@@ -1,0 +1,24 @@
+-user should be able to switch between dom and string representation
+-user should be able to add jquery obj to set content to an element
+
+test list
+
+-generator.getString()
+-generator.append($("<div id='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'></div>")).$el ---worked
+-generator.append(document.createElement("div")).$el                         ---worked
+-generator.append(document.querySelectorAll(".append")).$el                  ---worked
+-generator.append(generator2).$el                                            ---worked
+
+-generator.append(generator2).attachTo(document.body)                        ---worked
+
+    /*Ntes
+    * child elements overrides the inner property of an element
+    * first select element with get and then use setText over inner if you want to set text content
+    * same with inner html , first select element then use setContent
+    * you can set inner as jquery selector which will not touch the original elment just ll add the copy of it
+    * to set event first select the element then set event
+    * to set as first element use gen.attachTo() / must be explicit one element
+    * to append use gen.append()
+    *
+    * if you want to create quick sibling elements you can use string creation
+    * */
