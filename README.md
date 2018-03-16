@@ -14,8 +14,8 @@ If you have jQuery loaded in your page, then Generatorjs will make use of it.
 
 You basically have two way to create DOM elements with Generatorjs
 
-1* with constructor objects
-2* with consturctor strings
+*1 with constructor objects
+*2 with consturctor strings
 
 ## 1- With constructor objects
 
