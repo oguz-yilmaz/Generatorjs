@@ -54,7 +54,7 @@ This is the preferred way to generate DOM elements via Generatorjs connstructor
 ```
 The above script will create something like below:
 
-<img width="248" alt="1" src="https://user-images.githubusercontent.com/35298601/37527087-3211e9e6-2942-11e8-84c9-11b2fba44f5f.PNG">
+<img width="448" alt="1" src="https://user-images.githubusercontent.com/35298601/37527087-3211e9e6-2942-11e8-84c9-11b2fba44f5f.PNG">
 
 ### Adding events
 
@@ -69,4 +69,4 @@ You can simply add events like folowing:
 ```
 Then result would be :
 
-![Generated Element](examples/images/2.png?raw=true "Console")
+<img width="643" alt="2" src="https://user-images.githubusercontent.com/35298601/37527322-d2aaddfe-2942-11e8-89d0-87fb686e35db.PNG">
