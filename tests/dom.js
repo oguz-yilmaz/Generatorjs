@@ -7,11 +7,38 @@ QUnit.module( "Dom Generator Tests", {
         }
     }
 });
+var isArray = function(value) {    // check native isArray first
+    return Object.prototype.toString.call(value) === '[object Array]';
+};
 
 function wrap(e){
     var el = document.createElement("div");
     el.appendChild(e);
     return el.innerHTML;
+}
+
+function nodeListToArray(node){
+    if(isArray(node)){
+        return node;
+    }else{
+       return Array.prototype.map.call( node,function(x){
+            return x;
+        });
+    }
+}
+
+function walkThrough(arr, arr2){
+    if(!isArray(arr) || !isArray(arr2)){
+        throw new TypeError("Argument must be of array!");
+    }
+    if(arr.length !== arr2.length){
+        throw new TypeError("Both argument presented must be of array!");
+    }
+    var res = [];
+    for(var i=0; i < arr.length; i++){
+        res.push([arr[i], arr2[i]]);
+    }
+    return res;
 }
 
 QUnit.test( "object creation tests", function( assert ) {
@@ -75,6 +102,52 @@ QUnit.test( "string creation tests", function( assert ) {
 });
 
 QUnit.test( "selecting elements tests", function( assert ) {
-    assert.equal( wrap(this.generator("div").$el) , wrap($('<div></div>').get(0)));
+    var generator = new Generatorjs(
+        {
+            el:'div',
+            attr:'id=div1,class=cls',
+            child:[
+                {
+                    el:'div',
+                    attr:'id=div2,class=c',
+                    child:[
+                        {
+                            el:'button',
+                            attr:'value=click,id=btn'
+                        },
+                        {
+                            el:'button',
+                            attr:'id=btn2',
+                            child:[
+                                {
+                                    el:"span",
+                                    attr:"id=span1",
+                                    inner:"Click Me"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    el:'div',
+                    attr:'id=div4,name=test,class=c'
+                }
+            ]
+        },
+
+        {
+            env:'dev'
+        }
+    );
+
+    var $el = generator.$el;
+    assert.equal( generator.get('#div2').$selected.parentNode.firstChild.innerHtml , $($el).find('#div2').get(0).parentNode.firstChild.innerHtml);
+    assert.deepEqual( generator.get('button').$selected , $($el).find('button').get());
+    assert.deepEqual( generator.get('#span1').$selected.parentNode.firstChild.innerHtml , $($el).find('#span1').get(0).parentNode.firstChild.innerHtml);
+    assert.deepEqual( generator.get('#span1').$selected.innerHtml , $($el).find('#span1').get(0).innerHtml);
+    var t1 = walkThrough(nodeListToArray(generator.get('.c').$selected), nodeListToArray($($el).find('.c').get()), assert);
+    for(var i=0; i< t1.length; i++){
+        assert.equal( wrap(t1[i][0]), wrap(t1[i][1]));
+    }
 });
 

@@ -464,16 +464,16 @@
             }
             switch(type) {
                 case 'id':
-                    return JQUERY_AVAILABLE ? jQuery(selector).get(0) : d.getElementById(selector.slice(1));
+                    return JQUERY_AVAILABLE ? jQuery(this.$el).find(selector).get(0) : d.getElementById(selector.slice(1));
                     break;
                 case 'class':
-                    return JQUERY_AVAILABLE ? jQuery(selector).get().length === 1 ? jQuery(selector).get(0) : jQuery(selector).get() : d.getElementsByClassName(selector.slice(1));
+                    return JQUERY_AVAILABLE ? jQuery(this.$el).find(selector).get().length === 1 ? jQuery(this.$el).find(selector).get(0) : jQuery(this.$el).find(selector).get() : d.getElementsByClassName(selector.slice(1));
                     break;
                 case 'tag':
-                    return JQUERY_AVAILABLE ? jQuery(selector).get().length === 1 ? jQuery(selector).get(0) : jQuery(selector).get() : d.getElementsByTagName(selector.toUpperCase());
+                    return JQUERY_AVAILABLE ? jQuery(this.$el).find(selector).get().length === 1 ? jQuery(this.$el).find(selector).get(0) : jQuery(this.$el).find(selector).get() : d.getElementsByTagName(selector.toUpperCase());
                     break;
                 case 'name':
-                    return JQUERY_AVAILABLE ? jQuery("[name="+selector).get().length === 1 ? jQuery("[name="+selector).get(0) : jQuery("[name="+selector).get() : d.getElementsByName(selector);
+                    return JQUERY_AVAILABLE ? jQuery(this.$el).find("[name="+selector).get().length === 1 ? jQuery(this.$el).find("[name="+selector).get(0) : jQuery(this.$el).find("[name="+selector).get() : d.getElementsByName(selector);
                     break;
             }
         }
@@ -601,37 +601,37 @@
         }else if(len == 0){
             return this.$fragment;
         }else if(len === 1){
-            fragment = this.$fragment;
+            fragment = this.$fragment.cloneNode(true);
             var elem = arguments[0];
             if(!isString(elem)){
                 throw new TypeError('Argument passed should be a string. ' + typeof elem + ' is given!');
             }
             if(stringStarts(elem,'.')){
-                _el = selectElement(fragment,elem,'class');
+                _el = selectElement.call(this,fragment,elem,'class');
             }else if(stringStarts(elem,'#')){
-                _el = selectElement(fragment,elem,'id');
+                _el = selectElement.call(this,fragment,elem,'id');
             }else if(stringStarts(elem,'name=')){
                 var name = elem.split('=')[1];
-                _el = selectElement(fragment,name,'name');
+                _el = selectElement.call(this,fragment,name,'name');
             //for attribute selector
             //JQuery jQuery( "[attribute='value']" )
             }else if(stringStarts(elem,'[') || elem.indexOf('[') !== -1){
-                _el = selectElement(fragment,elem,'attr');
+                _el = selectElement.call(this,fragment,elem,'attr');
             }else if(elem === '*'){
                 var div = createElement('div');
                 div.appendChild(fragment);
                 _el = div.firstChild;
             }else{
                 if(index(TAG_NAMES,elem.toLowerCase())){
-                    _el = selectElement(this.$fragment,elem,'tag');
+                    _el = selectElement.call(this,fragment,elem.toLowerCase(),'tag');
                 }else{
                     //here is a special Generatorjs selector
                     //.get('p 4')
                     //_el = this.selector(elem);
                 }
             }
-            this.$prevEl = this.$el ? this.$el : null;
-            this.$selected = this.$el = _el;
+            this.$prevEl = this.$selected ? this.$selected : this.$el;
+            this.$selected  = _el;
         }
         return this;
     };
@@ -714,6 +714,10 @@
 
     Generatorjs.prototype.getString = function(){
         return getStringOfElement(this.$selected ? this.$selected : this.$el);
+    };
+
+    Generatorjs.prototype.previous = function(){
+        return  this.$prev;
     };
     return Generatorjs;
 }));
