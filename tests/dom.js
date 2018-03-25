@@ -43,6 +43,21 @@ function walkThrough(arr, arr2){
 
 QUnit.test( "object creation tests", function( assert ) {
     assert.equal( wrap(this.generator({
+        el:"div"
+
+    }).$el) , wrap($('<div></div>').get(0)));
+
+    assert.equal( wrap(this.generator({
+        el:"span"
+
+    }).$el) , wrap($('<span></span>').get(0)));
+
+    assert.equal( wrap(this.generator({
+        el:"img"
+
+    }).$el) , wrap($('<img />').get(0)));
+
+    assert.equal( wrap(this.generator({
         el:"div",
         attr:'id=test'
 
@@ -125,6 +140,53 @@ QUnit.test( "getString() tests", function( assert ) {
     assert.equal( this.generator("div(class=test,customAttr=custom)").getString() , $('<div><div class="test" customAttr="custom"></div></div>').html());
     assert.equal( this.generator("img(src=http://example.com/test.gif)").getString() , $('<div><img src="http://example.com/test.gif" /></div>').html());
 
+});
+
+QUnit.test( ".reset() tests", function( assert ) {
+    var generator = new Generatorjs(
+        {
+            el:'div',
+            attr:'id=div1,class=cls',
+            child:[
+                {
+                    el:'div',
+                    attr:'id=div2,class=c',
+                    child:[
+                        {
+                            el:'button',
+                            attr:'value=click,id=btn'
+                        },
+                        {
+                            el:'button',
+                            attr:'id=btn2',
+                            child:[
+                                {
+                                    el:"span",
+                                    attr:"id=span1",
+                                    inner:"Click Me"
+                                },
+                                {
+                                    el:"div",
+                                    attr:"id=newDiv,name=test"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    el:'div',
+                    attr:'id=div4,name=test,class=c'
+                }
+            ]
+        }
+    );
+
+    var $el = generator.$el,
+        $selected = generator.get("div").$selected;
+
+    assert.deepEqual( wrap(generator.reset().$selected) , wrap($($el).get(0)));
+    $selected = generator.get("#span1").$selected;
+    assert.deepEqual( wrap(generator.reset().$selected) , wrap($($el).get(0)));
 });
 
 QUnit.test( "selecting elements tests", function( assert ) {

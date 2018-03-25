@@ -7,7 +7,7 @@
   "description": "Quick, seamless and fast way of dynamically creating DOM elements",
   "main": "Generator.js",
   "keywords": [
-    "[generatorjs",
+    "generatorjs",
     "dom-generator",
     "html-builder",
     "dynamic-dom-elements"

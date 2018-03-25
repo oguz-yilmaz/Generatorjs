@@ -651,7 +651,7 @@
             fragment;
         if(len > 3){
             throw new TypeError('Wrong number of argument supplied to Generatorjs.get function.Max 3 allowed based on usage. ');
-        }else if(len == 0){
+        }else if(len === 0){
             return this.$fragment;
         }else if(len === 1){
             fragment = this.$fragment.cloneNode(true);
@@ -769,8 +769,9 @@
         return getStringOfElement(this.$selected ? this.$selected : this.$fragment);
     };
 
-    Generatorjs.prototype.previous = function(){
-        return  this.$prev;
+    Generatorjs.prototype.reset = function(){
+        this.$selected =  this.$el;
+        return this;
     };
 
     return Generatorjs;
