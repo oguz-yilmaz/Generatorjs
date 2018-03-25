@@ -1,0 +1,23 @@
+{
+  "name": "generatorjs",
+  "authors": [
+    "Oguz Yilmaz ogz.yilmaz@yandex.com"
+  ],
+  "description": "Quick, seamless and fast way of dynamically creating DOM elements",
+  "main": "Generator.js",
+  "keywords": [
+    "[generatorjs",
+    "dom-generator",
+    "html-builder",
+    "dynamic-dom-elements"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/oguz-yilmaz/Generatorjs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
