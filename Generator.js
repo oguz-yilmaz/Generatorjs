@@ -38,11 +38,14 @@
     var BROWSER_EVENTS = (function(){
         var browserEvents = [];
         for (var e in document){
+
             if (typeof document[e] !== "function" && e !== null && e.substring(0, 2) === "on"){
                 push.call(browserEvents,e);
             }
+
         }
         return browserEvents;
+
     })();
 
     function isDef (v) {
@@ -94,11 +97,13 @@
 
     //get the first part of the string until identifier
     var getUntil = function(str,identifier,t){
+
         var index = str.indexOf(identifier),
             idLen = identifier.length,
             remainder;
 
         var s = str.substr(0,index);
+
         if(t){
             remainder = str.substr(index + idLen);
         }else{
@@ -106,6 +111,7 @@
         }
 
         return index !== -1 ? [s,remainder] : [str,""];
+
     };
 
     // check if value is Array
@@ -124,6 +130,7 @@
 
     //cross-browser addEvent support
     function addEvent(evnt, func) {
+
         var _el = this.$selected ? this.$selected : this.$el;
         if(!_el){
             //returns undefined
@@ -143,10 +150,13 @@
         else {
             root["on"+evnt] = func;
         }
+
     }
 
     var removeEvent = function(evnt, func) {
+
         var _el = this.$selected ? this.$selected : this.$el;
+
         if(isString(func) && typeof func !== 'function'){
             func = root[func];
         }
@@ -164,7 +174,7 @@
         } else {
             _el["on" + evnt] = null;
         }
-    }
+    };
 
     // check if split funtion has returned value
     var hasSplitValue = function(value) {
@@ -183,15 +193,18 @@
     var items = function items(obj) {
         var items = [];
         for (var prop in obj) {
+
             if (hasOwn(obj, prop)) {
                 push.call(items,[prop, obj[prop]]);
             }
+
         }
-        return items
+        return items;
     };
 
     //Array.prototype.indexOf implementation for older browser support
     var index = function(arr,searchElement,fromIndex){
+
         if (!Array.prototype.indexOf) {
             var s = function(arr,searchElement, fromIndex) {
                 var k;
@@ -236,7 +249,9 @@
      */
     function extend(dest){
         for(var i = 1,l=arguments.length,src;i<l;i++){
+
             src = arguments[i];
+
             if(src && isObject(src)){
                 for(var prop in src){
                     if(hasOwn(src,prop)){
@@ -248,16 +263,15 @@
         }
 
         return dest;
-    };
+    }
 
     var setAttributes = function (elem,attributes) {
         if (isDef(attributes) && isArray(attributes)) {
             for (var i=0,attr; i<attributes.length; i++) {
+
                 attr=attributes[i];
-                // if(index(attr[0],BROWSER_EVENTS)){
-                //     addEvent.call(elem,attr[0],attr[1]);
-                // }
                 elem.setAttribute(attr[0],attr[1]);
+
             }
         }
         return elem;
@@ -265,21 +279,31 @@
 
     var attributeSplitter = function(input){
         var regExpAttribute = /\(([^)]+)\)/;     // between  ( .. )
+
         var matches = input.indexOf('(') !== -1 && input.indexOf(')') !== -1 ? regExpAttribute.exec(input):input,
             attributes,
             resultArray=[];
 
         if(matches !== null){
+
             attributes = isArray(matches) && isDef(matches[1]) ? matches[1].split(',') : matches.split(',');
+
             if(attributes!==null && hasSplitValue(attributes)){
+
                 if(attributes !== [] || attributes !== [""]){
+
                     for(var p=0,keyVal;p<attributes.length;p++){
+
                         keyVal = attributes[p].split('=');
                         if(hasSplitValue(keyVal))
                             push.call(resultArray,[keyVal[0],keyVal[1]]);
+
                     }
+
                 }
+
             }
+
         }
         return resultArray;
     };
@@ -289,35 +313,59 @@
             split = elemString.split(' ');
 
         for(var i=0;i<split.length;i++){
+
             var elem = getUntil(split[i],'..'),
                 parent = null,
                 el     = null,
                 cnt    = 0;
 
             while(elem[0] !== ''){
+
                 if(el !== null && cnt === 1){
                     parent = el;
                 }
 
                 if(elem[0] !== '' && !stringStarts(elem[0],'[[') && elem[0].indexOf('(') === -1){
+
                     el = createElement(elem[0]);
+
                 }else if(elem[0].indexOf('(') !== -1){
-                    var elString = getUntil(elemString,'(',false);
+
+                    var elString = getUntil(elem[0],'(',false);
                     el = createElement(elString[0]);
                     var elAttrs = attributeSplitter(elString[1]);
                     el = setAttributes(el,elAttrs);
+
                 }
+
                 if(parent !== null){
                     appendInner(parent,el);
                 }
 
                 if(elem[1].indexOf('..') !== -1){
-                    elem = getUntil(elem[1],'..');
+
+                    if(stringStarts(elem[1], "..")){
+                        elem = getUntil(elem[1].substr(2),'..');
+                    }else{
+                        elem = getUntil(elem[1],'..');
+                    }
+
                 }else{
-                    elem = getUntil(elem[1],'..',false);
+
+                    if(elem[1] === "" || elem[1] === " "){
+                        break;
+                    }
+
+                    if(stringStarts(elem[1], "..")){
+                        elem = getUntil(elem[1].substr(2),'..',false);
+                    }else{
+                        elem = getUntil(elem[1],'..',false);
+                    }
+
                 }
                 cnt++;
             }
+
             if(parent !== null){
                 fragment.appendChild(parent);
             }else if(el !== null){
@@ -344,17 +392,21 @@
             for(var i=0,elem;i<arr.length;i++){
 
                 elem = createElement(arr[i]['el']);
+
                 if(hasOwn(arr[i],'attr')){
                     setAttributes(elem,attributeSplitter(arr[i]['attr']));
                 }
                 if(hasOwn(arr[i],'inner')){
+
                     if(JQUERY_AVAILABLE && arr[i]['inner'] instanceof jQuery){
                         _html(elem,arr[i]['inner'].clone());
                     }else{
                         _html(elem,arr[i]["inner"]);
                     }
+
                 }
                 if(hasOwn(arr[i],'child')){
+
                     if(isArray(arr[i]['child']) && !emptyArray(arr[i]['child'])){
                         try{
                             elem.append(createElementsObjectUntil(arr[i]['child']));
@@ -366,6 +418,7 @@
                     }else{
                         throw new TypeError('Child elements must be an array.');
                     }
+
                 }
                 fragment.appendChild(elem);
             }
@@ -713,11 +766,12 @@
     };
 
     Generatorjs.prototype.getString = function(){
-        return getStringOfElement(this.$selected ? this.$selected : this.$el);
+        return getStringOfElement(this.$selected ? this.$selected : this.$fragment);
     };
 
     Generatorjs.prototype.previous = function(){
         return  this.$prev;
     };
+
     return Generatorjs;
 }));

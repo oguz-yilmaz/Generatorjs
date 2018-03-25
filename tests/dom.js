@@ -92,12 +92,38 @@ QUnit.test( "object creation tests", function( assert ) {
 });
 
 QUnit.test( "string creation tests", function( assert ) {
-    assert.equal( wrap(this.generator("div").$el) , wrap($('<div></div>').get(0)));
-    assert.equal( wrap(this.generator("div div").$el) , wrap($('<div></div> <div></div>').get(0)));
-    assert.equal( wrap(this.generator("div(id=test)").$el) , wrap($('<div id="test"></div>').get(0)));
-    assert.equal( wrap(this.generator("div(class=test)").$el) , wrap($('<div class="test"></div>').get(0)));
-    assert.equal( wrap(this.generator("div(class=test,customAttr=custom)").$el) , wrap($('<div class="test" customAttr="custom"></div>').get(0)));
-    assert.equal( wrap(this.generator("img(src=http://example.com/test.gif)").$el) , wrap($('<img src="http://example.com/test.gif" />').get(0)));
+    assert.equal( wrap(this.generator("div").$fragment) , $('<div><div></div></div>').html());
+    assert.equal( wrap(this.generator("div div").$fragment) , $('<div><div></div><div></div></div>').html());
+    assert.equal( wrap(this.generator("div div..div").$fragment) , $('<div><div></div><div><div></div></div></div>').html());
+    assert.equal( wrap(this.generator("div div..div..div").$fragment) , $('<div><div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( wrap(this.generator("div div div..div..div").$fragment) , $('<div><div></div><div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( wrap(this.generator("div div..div div..div..div").$fragment) , $('<div><div></div><div><div></div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( wrap(this.generator("div div..div..div div..div..div").$fragment) , $('<div><div></div><div><div><div></div></div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( wrap(this.generator("div div..div..div(class=test) div..div..div").$fragment) , $('<div><div></div><div><div><div class="test"></div></div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( wrap(this.generator("div div..div..div(class=test) div(id=myId)..div..div").$fragment) , $('<div><div></div><div><div><div class="test"></div></div></div><div id="myId"><div><div></div></div></div></div>').html());
+    assert.equal( wrap(this.generator("div..div div").$fragment) , $('<div><div><div></div></div><div></div></div>').html());
+    assert.equal( wrap(this.generator("div(id=test)").$fragment) , $('<div><div id="test"></div></div>').html());
+    assert.equal( wrap(this.generator("div(class=test)").$fragment) , $('<div><div class="test"></div></div>').html());
+    assert.equal( wrap(this.generator("div(class=test,customAttr=custom)").$fragment) , $('<div><div class="test" customAttr="custom"></div></div>').html());
+    assert.equal( wrap(this.generator("img(src=http://example.com/test.gif)").$fragment) , $('<div><img src="http://example.com/test.gif" /></div>').html());
+
+});
+
+QUnit.test( "getString() tests", function( assert ) {
+    assert.equal( this.generator("div").getString() , $('<div><div></div></div>').html());
+    assert.equal( this.generator("div div").getString() , $('<div><div></div><div></div></div>').html());
+    assert.equal( this.generator("div div..div").getString() , $('<div><div></div><div><div></div></div></div>').html());
+    assert.equal( this.generator("div div..div..div").getString() , $('<div><div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( this.generator("div div div..div..div").getString() , $('<div><div></div><div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( this.generator("div div..div div..div..div").getString() , $('<div><div></div><div><div></div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( this.generator("div div..div..div div..div..div").getString() , $('<div><div></div><div><div><div></div></div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( this.generator("div div..div..div(class=test) div..div..div").getString() , $('<div><div></div><div><div><div class="test"></div></div></div><div><div><div></div></div></div></div>').html());
+    assert.equal( this.generator("div div..div..div(class=test) div(id=myId)..div..div").getString() , $('<div><div></div><div><div><div class="test"></div></div></div><div id="myId"><div><div></div></div></div></div>').html());
+    assert.equal( this.generator("div..div div").getString() , $('<div><div><div></div></div><div></div></div>').html());
+    assert.equal( this.generator("div(id=test)").getString() , $('<div><div id="test"></div></div>').html());
+    assert.equal( this.generator("div(class=test)").getString() , $('<div><div class="test"></div></div>').html());
+    assert.equal( this.generator("div(class=test,customAttr=custom)").getString() , $('<div><div class="test" customAttr="custom"></div></div>').html());
+    assert.equal( this.generator("img(src=http://example.com/test.gif)").getString() , $('<div><img src="http://example.com/test.gif" /></div>').html());
 
 });
 
