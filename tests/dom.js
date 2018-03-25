@@ -123,6 +123,10 @@ QUnit.test( "selecting elements tests", function( assert ) {
                                     el:"span",
                                     attr:"id=span1",
                                     inner:"Click Me"
+                                },
+                                {
+                                    el:"div",
+                                    attr:"id=newDiv,name=test"
                                 }
                             ]
                         }
@@ -145,6 +149,9 @@ QUnit.test( "selecting elements tests", function( assert ) {
     assert.deepEqual( generator.get('button').$selected , $($el).find('button').get());
     assert.deepEqual( generator.get('#span1').$selected.parentNode.firstChild.innerHtml , $($el).find('#span1').get(0).parentNode.firstChild.innerHtml);
     assert.deepEqual( generator.get('#span1').$selected.innerHtml , $($el).find('#span1').get(0).innerHtml);
+    assert.deepEqual( wrap(generator.get('*').$selected) , wrap($($el).get(0)));
+    assert.deepEqual( generator.get('name=test').$selected[0] , $($el).find("[name='test']").get(0));
+    assert.deepEqual( generator.get('name=test').$selected , $($el).find("[name='test']").get());
     var t1 = walkThrough(nodeListToArray(generator.get('.c').$selected), nodeListToArray($($el).find('.c').get()), assert);
     for(var i=0; i< t1.length; i++){
         assert.equal( wrap(t1[i][0]), wrap(t1[i][1]));

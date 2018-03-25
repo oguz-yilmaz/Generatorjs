@@ -473,7 +473,7 @@
                     return JQUERY_AVAILABLE ? jQuery(this.$el).find(selector).get().length === 1 ? jQuery(this.$el).find(selector).get(0) : jQuery(this.$el).find(selector).get() : d.getElementsByTagName(selector.toUpperCase());
                     break;
                 case 'name':
-                    return JQUERY_AVAILABLE ? jQuery(this.$el).find("[name="+selector).get().length === 1 ? jQuery(this.$el).find("[name="+selector).get(0) : jQuery(this.$el).find("[name="+selector).get() : d.getElementsByName(selector);
+                    return JQUERY_AVAILABLE ? jQuery(this.$el).find("[name="+selector+"]").get().length === 1 ? jQuery(this.$el).find("[name="+selector+"]").get(0) : jQuery(this.$el).find("[name="+selector+"]").get() : d.getElementsByName(selector);
                     break;
             }
         }
