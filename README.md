@@ -28,7 +28,8 @@ You basically have two way to create DOM elements with Generatorjs
 This is the preferred way to generate DOM elements via Generatorjs constructor.It allows you to generate
 DOM elements based on the JSON structure passed through Generatorjs constructor.  
 Basically there is 4 main property that you want to use with JSON constructor object.
-#####important notes before we go on:
+
+##### important notes before we go on:
     -in the JSON objects, be aware of following rules
     -{ .. } new element
     -[] child elements must be defined in array, so they must be array of objects
