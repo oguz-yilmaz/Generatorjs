@@ -2,3 +2,6 @@ todo
 .idea/*
 .idea_modules/
 .idea/
+.DS_Store
+node_modules
+dist
