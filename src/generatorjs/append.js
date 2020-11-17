@@ -5,34 +5,33 @@ import Generatorjs from 'generatorjs';
 
 //args can be nodelist , element ,JQuery object or Generatorjs instance
 export default function (args) {
-  var div = createElement('div'),
-    that = this;
+  let fragmentDiv = createElement('div');
 
-  div.appendChild(this.$fragment.cloneNode(true));
-  div = div.firstChild;
+  fragmentDiv.appendChild(this.$fragment.cloneNode(true));
+  fragmentDiv = fragmentDiv.firstChild;
 
   //if it is JQuery object
   if (JQUERY_AVAILABLE && args instanceof jQuery) {
     var elem = args.get();
     forEach(elem, function (index, item) {
-      div.appendChild(item);
+      fragmentDiv.appendChild(item);
     });
 
     //if it is NodeList
   } else if (isNodeList(args)) {
     forEach(args, function (index, item) {
-      div.appendChild(item);
+      fragmentDiv.appendChild(item);
     });
 
     //if it is html element
   } else if (isDef(args.nodeType) && args.nodeType > 0) {
-    div.appendChild(args);
+    fragmentDiv.appendChild(args);
 
     //if it is Generatorjs object
   } else if (args instanceof Generatorjs) {
-    div.appendChild(args.$el);
+    fragmentDiv.appendChild(args.$el);
   }
 
-  this.$el = div;
+  this.$el = fragmentDiv;
   return this;
 }

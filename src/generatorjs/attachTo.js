@@ -6,6 +6,7 @@ export default function (element) {
   if (!this.$selected && !this.$el) {
     throw new Error('No elements Generatorjs object has to be attached!');
   }
+
   var _el = this.$selected ? this.$selected : this.$el;
 
   //if it is JQuery object
@@ -20,5 +21,6 @@ export default function (element) {
       'Elements to be attached must be of either type Element Object or JQuery Object'
     );
   }
+
   return this;
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML GENERATOR</title>
+</head>
+<body>
+<script src="../../dist//Generator.min.js"></script>
+
+<script>
+    var generator = new Generatorjs(
+        {
+            el:'div',
+            attr:'id=div1,class=cls',
+            child:[
+                {
+                    el:'div',
+                    attr:'id=div2,class=c',
+                    child:[
+                        {
+                            el:'button',
+                            attr:'value=click,id=btn'
+                        }
+                    ]
+                },
+                {
+                    el:'div',
+                    attr:'id=div4,name=test,class=c'
+                }
+            ]
+        },
+
+        {
+            env:'dev'
+        }
+    );
+
+    generator
+        .get("#btn")
+        .setText("Click Me")
+        .addEvent("click",myClickEvent)
+        .attachTo(document.body);
+
+    function myClickEvent(){
+        alert("clicked")
+    }
+
+console.log(new Generatorjs({
+      el: 'div',
+    }).getString());
+</script>
+</body>
+</html>
