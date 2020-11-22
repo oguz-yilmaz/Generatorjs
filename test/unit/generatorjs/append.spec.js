@@ -1,9 +1,36 @@
 import Generatorjs from 'generatorjs';
+import { screen } from '@testing-library/dom';
 
-test('Creates a single div', () => {
-  expect(
-    new Generatorjs({
-      el: 'div',
-    }).getString()
-  ).toBe('<div></div>');
+test('appends ul to a single div', () => {
+  const expected = `
+  <div>
+    <ul></ul>
+  </div>
+  `;
+
+  const gen = new Generatorjs({
+    el: 'div',
+  });
+
+  gen.append(document.createElement('ul'));
+
+  expect(gen.$el).toContainHTML(''.stripSpaces(expected));
+});
+
+test('appends div to a single div with innerText', () => {
+  const expected = `
+  <div>
+    Example
+    <div></div>
+  </div>
+  `;
+
+  const gen = new Generatorjs({
+    el: 'div',
+    inner: 'Example',
+  });
+
+  gen.append(document.createElement('div'));
+
+  expect(gen.$el).toContainHTML(''.stripSpaces(expected));
 });

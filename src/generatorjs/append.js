@@ -12,8 +12,7 @@ export default function (args) {
 
   //if it is JQuery object
   if (JQUERY_AVAILABLE && args instanceof jQuery) {
-    var elem = args.get();
-    forEach(elem, function (index, item) {
+    forEach(args.get(), function (index, item) {
       fragmentDiv.appendChild(item);
     });
 
@@ -33,5 +32,6 @@ export default function (args) {
   }
 
   this.$el = fragmentDiv;
+
   return this;
 }

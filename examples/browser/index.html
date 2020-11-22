@@ -5,7 +5,7 @@
     <title>HTML GENERATOR</title>
 </head>
 <body>
-<script src="../../dist//Generator.min.js"></script>
+<script src="../../dist//Generator.js"></script>
 
 <script>
     var generator = new Generatorjs(
@@ -28,10 +28,6 @@
                     attr:'id=div4,name=test,class=c'
                 }
             ]
-        },
-
-        {
-            env:'dev'
         }
     );
 
@@ -45,9 +41,18 @@
         alert("clicked")
     }
 
-console.log(new Generatorjs({
+    var gen = new Generatorjs({
       el: 'div',
-    }).getString());
+      inner: '<div>Visible</div>'
+    });
+
+    gen.append(document.createElement("ul"));
+
+    console.log(gen.$el);
+
+    
+
+
 </script>
 </body>
 </html>
