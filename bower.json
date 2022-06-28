@@ -2,9 +2,9 @@
   "name": "generatorjs",
   "version": "v1.0",
   "authors": [
-    "Oguz Yilmaz ogz.yilmaz@yandex.com"
+    "Oguz Yilmaz oguz.yilmaz@yahoo.com"
   ],
-  "description": "Quick, seamless and fast way of dynamically creating DOM elements",
+  "description": "Fast and seamless way of dynamically creating DOM elements",
   "main": "Generator.js",
   "keywords": [
     "generatorjs",

@@ -17,7 +17,7 @@ export const EMPTY_OBJECT = Object.freeze({});
  * @type {Array.<string>}
  */
 export const TAG_NAMES = (
-  'a   address area article aside audio b bdi bdo big ' +
+  'a address area article aside audio b bdi bdo big ' +
   'blockquote body br button canvas caption cite code col colgroup command ' +
   'datalist dd del details dfn div dl dt em embed fieldset figcaption figure ' +
   'footer form frame frameset h1 h2 h3 h4 h5 h6 hr head header hgroup html i ' +

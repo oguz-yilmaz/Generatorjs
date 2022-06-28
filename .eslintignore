@@ -1,0 +1,4 @@
+dist
+node_modules
+**/*.json
+rollup.config.js
