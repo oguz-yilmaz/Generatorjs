@@ -11,40 +11,39 @@ const _toString = Object.prototype.toString;
  * isPlainObject(window) ==> false
  */
 export const isPlainObject = function (obj) {
-  return _toString.call(obj) === '[object Object]';
+    return _toString.call(obj) === '[object Object]';
 };
 
 // check if value is a string
 export const isString = function (value) {
-  if (typeof value === 'string') {
-    return true;
-  }
+    if (typeof value === 'string') {
+        return true;
+    }
 
-  return _toString.call(value) === '[object String]';
+    return _toString.call(value) === '[object String]';
 };
 
 export const isDef = function (v) {
-  return v !== undefined && v !== null;
+    return v !== undefined && v !== null;
 };
 
-export const isArray =
-  Array.isArray ||
-  function (value) {
-    return _toString.call(value) === '[object Array]';
+export const isArray = Array.isArray
+  || function (value) {
+      return _toString.call(value) === '[object Array]';
   };
 
 export const isObject = function (value) {
-  return Object(value) === value;
+    return Object(value) === value;
 };
 
 export const emptyArray = function (array) {
-  return typeof array !== 'undefined' && array !== null && array.length <= 0;
+    return typeof array !== 'undefined' && array !== null && array.length <= 0;
 };
 
 export const forEach = function (array, callback, scope) {
-  for (let i = 0; i < array.length; i++) {
-    callback.call(scope, i, array[i]);
-  }
+    for (let i = 0; i < array.length; i++) {
+        callback.call(scope, i, array[i]);
+    }
 };
 
 /**
@@ -52,55 +51,54 @@ export const forEach = function (array, callback, scope) {
  * with an object and property name.
  */
 export const hasOwn = (function () {
-  const hasOwnProperty = Object.prototype.hasOwnProperty;
+    const { hasOwnProperty } = Object.prototype;
 
-  return function (obj, prop) {
-    return hasOwnProperty.call(obj, prop);
-  };
-})();
+    return function (obj, prop) {
+        return hasOwnProperty.call(obj, prop);
+    };
+}());
 
 /**
  * Copies own properties of any given object to destination object
  */
 export const extend = function (dest) {
-  for (let i = 1, l = arguments.length, src; i < l; i++) {
-    src = arguments[i];
+    for (let i = 1, l = arguments.length, src; i < l; i++) {
+        src = arguments[i];
 
-    if (src && isObject(src)) {
-      for (let prop in src) {
-        if (hasOwn(src, prop)) {
-          dest[prop] = src[prop];
+        if (src && isObject(src)) {
+            for (const prop in src) {
+                if (hasOwn(src, prop)) {
+                    dest[prop] = src[prop];
+                }
+            }
         }
-      }
     }
-  }
 
-  return dest;
+    return dest;
 };
 
 export const isNodeList = function (node) {
-  const stringRepr = Object.prototype.toString.call(node);
-  let res;
+    const stringRepr = Object.prototype.toString.call(node);
+    let res;
 
-  res =
-    typeof node === 'object' &&
-    /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
-    typeof node.length === 'number' &&
-    (node.length === 0 ||
-      (typeof node[0] === 'object' && node[0].nodeType > 0));
+    res = typeof node === 'object'
+    && /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr)
+    && typeof node.length === 'number'
+    && (node.length === 0
+      || (typeof node[0] === 'object' && node[0].nodeType > 0));
 
-  if (res === false) {
-    //try for IE
-    if (
-      typeof node.length === 'number' &&
-      typeof node.item !== 'undefined' &&
-      typeof node.nextNode === 'function' &&
-      typeof node.reset === 'function'
-    ) {
-      res = true;
+    if (res === false) {
+    // try for IE
+        if (
+            typeof node.length === 'number'
+      && typeof node.item !== 'undefined'
+      && typeof node.nextNode === 'function'
+      && typeof node.reset === 'function'
+        ) {
+            res = true;
+        }
     }
-  }
-  return res;
+    return res;
 };
 
 /**
@@ -109,20 +107,21 @@ export const isNodeList = function (node) {
  * @param {string} html
  */
 export const _html = JQUERY_AVAILABLE
-  ? function (el, html) {
-      jQuery(el).html(html);
+    ? function (el, html) {
+        jQuery(el).html(html);
     }
-  : function (el, html) {
-      try {
-        el.innerHTML = html;
-      } catch (e) {
-        const div = document.createElement('div');
-        div.innerHTML = html;
-        while (el.firstChild) el.removeChild(el.firstChild);
-        while (div.firstChild) el.appendChild(div.firstChild);
-      }
+    : function (el, html) {
+        try {
+            el.innerHTML = html;
+        }
+        catch (e) {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            while (el.firstChild) el.removeChild(el.firstChild);
+            while (div.firstChild) el.appendChild(div.firstChild);
+        }
     };
 
 export const stringStarts = function (str, starts) {
-  return str.substring(0, starts.length) === starts;
+    return str.substring(0, starts.length) === starts;
 };

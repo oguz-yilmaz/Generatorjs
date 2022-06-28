@@ -9,5 +9,8 @@
         "sourceType": "module"
     },
     "rules": {
+        "indent": ["error", 4],
+        "no-param-reassign": 0,
+        "brace-style": ["error", "stroustrup"]
     }
 }

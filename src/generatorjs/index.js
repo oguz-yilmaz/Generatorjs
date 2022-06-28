@@ -11,15 +11,15 @@ import setContent from './setContent';
 import setText from './setText';
 
 export default {
-  render,
-  addEvent,
-  append,
-  attachTo,
-  deleteEvent,
-  get,
-  getString,
-  prevState,
-  reset,
-  setContent,
-  setText,
+    render,
+    addEvent,
+    append,
+    attachTo,
+    deleteEvent,
+    get,
+    getString,
+    prevState,
+    reset,
+    setContent,
+    setText,
 };

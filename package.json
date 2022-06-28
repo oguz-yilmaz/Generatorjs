@@ -11,7 +11,7 @@
     "watch": "rollup -c -w",
     "test": "jest",
     "build": "rollup --config",
-    "fix": "npx eslint -c .eslintrc.json --rulesdir ./build/lib/eslint --fix --ignore-path .eslintignore \"**/*.js\" \"**/*.ts\""
+    "fix": "npx eslint -c .eslintrc.json --fix --ignore-path .eslintignore \"**/*.js\""
   },
   "repository": {
     "type": "git",
