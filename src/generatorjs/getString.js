@@ -1,5 +1,5 @@
-import { getStringOfElement } from '../dom-utils';
+import { getStringOfElement } from '../dom-utils'
 
 export default function () {
-    return getStringOfElement(this.$selected ? this.$selected : this.$fragment);
+    return getStringOfElement(this.$selected ? this.$selected : this.$fragment)
 }

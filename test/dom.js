@@ -19,6 +19,7 @@ QUnit.module('Dom Generator Tests', {
         };
     },
 });
+
 const isArray = function (value) {
     // check native isArray first
     return Object.prototype.toString.call(value) === '[object Array]';

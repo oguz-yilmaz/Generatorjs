@@ -1,27 +1,27 @@
-import { stringStarts, isString } from '../utils';
+import { stringStarts, isString } from '../utils'
 
 export default function (evnt, func) {
-    const element = this.$selected ? this.$selected : this.$el;
+    const element = this.$selected ? this.$selected : this.$el
 
     if (isString(func) && typeof func !== 'function') {
-        func = window[func];
+        func = window[func]
     }
     if (!element) {
     // returns undefined
-        return;
+        return
     }
     if (stringStarts(evnt, 'on')) {
-        evnt = evnt.substr(2);
+        evnt = evnt.substr(2)
     }
     if (element.removeEventListener) {
-        element.removeEventListener(evnt, func, false);
+        element.removeEventListener(evnt, func, false)
     }
     else if (element.detachEvent) {
-        element.detachEvent(`on${evnt}`, func);
+        element.detachEvent(`on${evnt}`, func)
     }
     else {
-        element[`on${evnt}`] = null;
+        element[`on${evnt}`] = null
     }
 
-    return this;
+    return this
 }

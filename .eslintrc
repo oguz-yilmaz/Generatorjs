@@ -11,6 +11,7 @@
     "rules": {
         "indent": ["error", 4],
         "no-param-reassign": 0,
-        "brace-style": ["error", "stroustrup"]
+        "brace-style": ["error", "stroustrup"],
+        "semi": ["error", "never"]
     }
 }

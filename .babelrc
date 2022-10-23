@@ -1,15 +1,15 @@
 {
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "esmodules": true
-        },
-        "useBuiltIns" : "usage",
-        "corejs": 3
-      }
-    ]
-  ],
-  "plugins": ["@babel/plugin-transform-classes"]
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "esmodules": true
+                },
+                "useBuiltIns" : "usage",
+                "corejs": 3
+            }
+        ]
+    ],
+    "plugins": ["@babel/plugin-transform-classes"]
 }

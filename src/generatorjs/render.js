@@ -1,4 +1,4 @@
-import { createElement } from '../dom-utils';
+import { createElement } from '../dom-utils'
 
 // why are we using fragment.cloneNode
 /* If child is a reference to an existing node in the document, appendChild moves it from its current position
@@ -11,9 +11,9 @@ import { createElement } from '../dom-utils';
  * behind an empty DocumentFragment. Because all of the nodes are inserted into the document at once, only one reflow and render is
  * triggered instead of potentially one for each node inserted if they were inserted separately. */
 export default function () {
-    let d = createElement('div');
-    const f = this.$fragment.cloneNode(true);
-    d.appendChild(f);
-    d = d.firstChild;
-    this.$el = d;
+    let d = createElement('div')
+    const f = this.$fragment.cloneNode(true)
+    d.appendChild(f)
+    d = d.firstChild
+    this.$el = d
 }

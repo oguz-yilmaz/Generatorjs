@@ -2,13 +2,13 @@
  * @const
  * @type {boolean}
  */
-export const JQUERY_AVAILABLE = typeof jQuery !== 'undefined';
+export const JQUERY_AVAILABLE = typeof jQuery !== 'undefined'
 
 /**
  * @const
  * @type {object}
  */
-export const EMPTY_OBJECT = Object.freeze({});
+export const EMPTY_OBJECT = Object.freeze({})
 
 /**
  * Tag names defined in the HTML 4.01 Strict and Frameset DTDs and new elements
@@ -26,4 +26,4 @@ export const TAG_NAMES = (
   + 'progress q rp rt samp script section select small source span strong '
   + 'style sub summary sup table tbody td textarea tfoot th thead time title tr '
   + 'track tt ul var video wbr'
-).split(' ');
+).split(' ')
