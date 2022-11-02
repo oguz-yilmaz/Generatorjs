@@ -10,9 +10,7 @@ import { JQUERY_AVAILABLE } from './constants'
  * isPlainObject([]) ==> false
  * isPlainObject(window) ==> false
  */
-export const isPlainObject = (obj) => {
-    return Object.prototype.toString.call(obj) === '[object Object]'
-}
+export const isPlainObject = (obj) => Object.prototype.toString.call(obj) === '[object Object]'
 
 // check if value is a string
 export const isString = (value) => {
