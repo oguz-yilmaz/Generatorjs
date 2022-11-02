@@ -11,8 +11,9 @@
         "watch": "rollup -c -w",
         "test": "jest",
         "build": "rollup --config",
-        "format": "prettier --ignore .gitignore --write \"**/*.+(js|json)\"",
-        "check-format": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|json)\"",
+        "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
+        "format": "npm run prettier -- --write",
+        "check-format": "npm run prettier -- --list-different",
         "lint-check": "npx eslint -c .eslintrc --ignore-path .eslintignore \"**/*.js\"",
         "lint-fix": "npm run lint-check -- --fix"
     },
