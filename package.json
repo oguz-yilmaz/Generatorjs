@@ -8,14 +8,17 @@
         "tests": "tests"
     },
     "scripts": {
+        "clean": "rm -rf build",
         "watch": "rollup -c -w",
         "test": "jest",
         "build": "rollup --config",
+        "check-types": "tsc",
         "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
         "format": "npm run prettier -- --write",
         "check-format": "npm run prettier -- --list-different",
-        "lint-check": "npx eslint -c .eslintrc --ignore-path .eslintignore \"**/*.js\"",
-        "lint-fix": "npm run lint-check -- --fix"
+        "lint": "npx eslint -c .eslintrc --ignore-path .eslintignore \"**/*.js\"",
+        "lint-fix": "npm run lint-check -- --fix",
+        "validate": "npm run check-types && npm run check-format && npm run lint && npm run build"
     },
     "repository": {
         "type": "git",
@@ -40,6 +43,7 @@
         "@babel/core": "^7.12.7",
         "@babel/plugin-transform-classes": "^7.12.1",
         "@babel/preset-env": "^7.12.7",
+        "@babel/preset-typescript": "^7.18.6",
         "@rollup/plugin-babel": "^5.3.1",
         "@rollup/plugin-commonjs": "^16.0.0",
         "@rollup/plugin-json": "^4.1.0",
@@ -56,7 +60,8 @@
         "prettier": "^2.7.1",
         "rollup": "^2.33.3",
         "rollup-plugin-eslint": "^7.0.0",
-        "rollup-plugin-terser": "^7.0.2"
+        "rollup-plugin-terser": "^7.0.2",
+        "typescript": "^4.8.4"
     },
     "dependencies": {
         "core-js": "^3.7.0"

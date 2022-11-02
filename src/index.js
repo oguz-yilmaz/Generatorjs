@@ -4,20 +4,18 @@ import { createElementsObjectUntil } from './dom-utils'
 
 export default class Generatorjs {
     constructor(elementsObject = {}) {
-        let _dom = null
+        let renderedDom = null
 
         if (!isDef(elementsObject) || !isPlainObject(elementsObject)) {
             throw new TypeError(
-                `Element passed to constructor must be an object! ${
-                    typeof elementsObject
-                } is given! `,
+                `Element passed to constructor must be an object! ${typeof elementsObject} is given!`
             )
         }
 
-        _dom = createElementsObjectUntil(elementsObject)
+        renderedDom = createElementsObjectUntil(elementsObject)
 
-        if (_dom !== null && isObject(_dom)) {
-            this.$fragment = _dom
+        if (renderedDom !== null && isObject(renderedDom)) {
+            this.$fragment = renderedDom
         }
 
         this.bindMethods()
