@@ -8,7 +8,7 @@ export default class Generatorjs {
 
         if (!isDef(elementsObject) || !isPlainObject(elementsObject)) {
             throw new TypeError(
-                `Element passed to constructor must be an object!\n${
+                `Element passed to constructor must be an object! ${
                     typeof elementsObject
                 } is given! `,
             )

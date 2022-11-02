@@ -1,4 +1,4 @@
-export default function (content, elem) {
+export default function setContent(content, elem) {
     if (elem !== null) {
         _html(elem, content)
     }

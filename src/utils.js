@@ -3,17 +3,19 @@ import { JQUERY_AVAILABLE } from './constants'
 /**
  * Strict object type check. Only returns true
  * for plain JavaScript objects.
- * Any user created object is considered a plain object. The check only guards against native objects, e.g. window.
+ * Any user created object is considered a plain object.
+ * The check only guards against native objects, e.g. window.
+ *
  * isPlainObject({}) ==> true
  * isPlainObject([]) ==> false
  * isPlainObject(window) ==> false
  */
-export const isPlainObject = function (obj) {
+export const isPlainObject = (obj) => {
     return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
 // check if value is a string
-export const isString = function (value) {
+export const isString = (value) => {
     if (typeof value === 'string') {
         return true
     }
@@ -25,36 +27,26 @@ export const isDef = (v) => v !== undefined && v !== null
 
 export const isArray = Array.isArray || ((value) => Object.prototype.toString.call(value) === '[object Array]')
 
-export const isObject = function (value) {
-    return Object(value) === value
-}
+export const isObject = (value) => Object(value) === value
 
-export const emptyArray = function (array) {
-    return typeof array !== 'undefined' && array !== null && array.length <= 0
-}
+export const emptyArray = (array) => typeof array !== 'undefined' && array !== null && array.length <= 0
 
-export const forEach = function (array, callback, scope) {
+export const forEach = (array, callback, scope) => {
     for (let i = 0; i < array.length; i++) {
         callback.call(scope, i, array[i])
     }
 }
 
 /**
- * Callbound version of Object.prototype.hasOwnProperty(), ready to be called
+ * Call-bound version of Object.prototype.hasOwnProperty(), ready to be called
  * with an object and property name.
  */
-export const hasOwn = (function () {
-    const { hasOwnProperty } = Object.prototype
-
-    return function (obj, prop) {
-        return hasOwnProperty.call(obj, prop)
-    }
-}())
+export const hasOwn = ((() => (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop))())
 
 /**
  * Copies own properties of any given object to destination object
  */
-export const extend = function (dest) {
+export const extend = (dest) => {
     for (let i = 1, l = arguments.length, src; i < l; i++) {
         src = arguments[i]
 
@@ -70,7 +62,7 @@ export const extend = function (dest) {
     return dest
 }
 
-export const isNodeList = function (node) {
+export const isNodeList = (node) => {
     const stringRepr = Object.prototype.toString.call(node)
     let res
 
@@ -91,30 +83,29 @@ export const isNodeList = function (node) {
             res = true
         }
     }
+
     return res
 }
 
 /**
  * Cross-browser means of setting innerHTML on a DOM Element.
+ *
  * @param {Element} el
  * @param {string} html
  */
 export const _html = JQUERY_AVAILABLE
-    ? function (el, html) {
-        jQuery(el).html(html)
-    }
-    : function (el, html) {
+    ? (el, html) => jQuery(el).html(html)
+    : (el, html) => {
         try {
             el.innerHTML = html
         }
         catch (e) {
             const div = document.createElement('div')
             div.innerHTML = html
+
             while (el.firstChild) el.removeChild(el.firstChild)
             while (div.firstChild) el.appendChild(div.firstChild)
         }
     }
 
-export const stringStarts = function (str, starts) {
-    return str.substring(0, starts.length) === starts
-}
+export const stringStarts = (str, starts) => str.substring(0, starts.length) === starts

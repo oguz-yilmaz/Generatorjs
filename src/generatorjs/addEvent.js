@@ -1,25 +1,27 @@
 import { stringStarts, isString } from '../utils'
 
-export default function (evnt, func) {
-    const _el = this.$selected ? this.$selected : this.$el
-    if (!_el) {
-    // returns undefined
-        return
+export default function addEvent(event, handler) {
+    const currentElement = this.$selected ? this.$selected : this.$el
+    if (!currentElement) {
+        throw new Error('No element selected.')
     }
-    if (stringStarts(evnt, 'on')) {
-        evnt = evnt.substr(2)
+
+    if (stringStarts(event, 'on')) {
+        event = event.substr(2)
     }
-    if (isString(func) && typeof func !== 'function') {
-        func = window[func]
+
+    if (isString(handler) && typeof handler !== 'function') {
+        handler = window[handler]
     }
-    if (_el.addEventListener) {
-        _el.addEventListener(evnt, func, false)
+
+    if (currentElement.addEventListener) {
+        currentElement.addEventListener(event, handler, false)
     }
-    else if (_el.attachEvent) {
-        _el.attachEvent(`on${evnt}`, func)
+    else if (currentElement.attachEvent) {
+        currentElement.attachEvent(`on${event}`, handler)
     }
     else {
-        window[`on${evnt}`] = func
+        window[`on${event}`] = handler
     }
 
     return this

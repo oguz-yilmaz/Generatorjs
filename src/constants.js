@@ -1,20 +1,9 @@
-/**
- * @const
- * @type {boolean}
- */
 export const JQUERY_AVAILABLE = typeof jQuery !== 'undefined'
 
-/**
- * @const
- * @type {object}
- */
 export const EMPTY_OBJECT = Object.freeze({})
 
 /**
- * Tag names defined in the HTML 4.01 Strict and Frameset DTDs and new elements
- * from HTML5.
- * @const
- * @type {Array.<string>}
+ * Tag names defined in the HTML 4.01 Strict and Frameset DTDs and new elements from HTML5.
  */
 export const TAG_NAMES = (
     'a address area article aside audio b bdi bdo big '
