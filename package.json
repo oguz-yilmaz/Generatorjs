@@ -13,7 +13,8 @@
         "build": "rollup --config",
         "format": "prettier --ignore .gitignore --write \"**/*.+(js|json)\"",
         "check-format": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|json)\"",
-        "fix": "npx eslint -c .eslintrc --fix --ignore-path .eslintignore \"**/*.js\""
+        "lint-check": "npx eslint -c .eslintrc --ignore-path .eslintignore \"**/*.js\"",
+        "lint-fix": "npm run lint-check -- --fix"
     },
     "repository": {
         "type": "git",
@@ -48,6 +49,7 @@
         "concurrently": "^5.3.0",
         "eslint": "^7.14.0",
         "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-import": "^2.22.1",
         "jest": "^26.6.3",
         "prettier": "^2.7.1",
