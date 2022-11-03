@@ -2,7 +2,7 @@
     "name": "generatorjs",
     "version": "1.0.0",
     "description": "Allows you to create DOM elements seamlessly",
-    "main": "src/index.js",
+    "main": "src/index.ts",
     "directories": {
         "example": "examples",
         "tests": "tests"
@@ -57,6 +57,7 @@
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-import": "^2.22.1",
+        "husky": "^8.0.1",
         "jest": "^26.6.3",
         "prettier": "^2.7.1",
         "rollup": "^2.33.3",
