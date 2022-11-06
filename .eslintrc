@@ -12,6 +12,11 @@
         "no-param-reassign": 0,
         "semi": ["error", "never"]
     },
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
+    },
     "overrides": [
         {
             "files": "**/*.+(ts|tsx)",
@@ -19,7 +24,7 @@
             "parserOptions": {
                 "project": "./tsconfig.json"
             },
-            "plugins": ["@typescript-eslint/eslint-plugin"],
+            "plugins": ["@typescript-eslint/eslint-plugin", "import"],
             "extends": [
                 "plugin:@typescript-eslint/eslint-recommended",
                 "plugin:@typescript-eslint/recommended",

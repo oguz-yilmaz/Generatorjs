@@ -2,7 +2,15 @@
     "compilerOptions": {
         "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and
         include compatible library declarations. */,
-        "module": "commonjs" /* Specify what module code is generated.
+        "baseUrl": ".",
+        "paths": {
+            "@generatorjs": ["./src/generatorjs/index"],
+            "@test/*": ["./test/*"],
+            "@utils": ["./src/utils"],
+            "@dom-utils": ["./src/dom-utils"],
+            "@constants": ["./src/constants"]
+        },
+        "module": "ESNext" /* Specify what module code is generated.
         No effect at the moment as we don't use tsc for compilation but rather babel. */,
         "noEmit": true /* Disable emitting files because we use BABEL for actual compilation */,
         "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules.
