@@ -2,7 +2,9 @@ import FUNCTIONS from './generatorjs'
 import { isDef, isPlainObject, isObject } from './utils'
 import { createElementsObjectUntil } from './dom-utils'
 
-export default class Generatorjs {
+export default class GeneratorJs {
+    #fragment: DocumentFragment | null = null
+
     constructor(elementsObject = {}) {
         let renderedDom = null
 
@@ -15,7 +17,7 @@ export default class Generatorjs {
         renderedDom = createElementsObjectUntil(elementsObject)
 
         if (renderedDom !== null && isObject(renderedDom)) {
-            this.$fragment = renderedDom
+            this.#fragment = renderedDom
         }
 
         this.bindMethods()
