@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+npm run check-types && lint-staged && npm run build
