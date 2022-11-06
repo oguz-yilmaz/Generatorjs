@@ -10,7 +10,7 @@ import reset from './reset'
 import setContent from './setContent'
 import setText from './setText'
 
-export default {
+export {
     render,
     addEvent,
     append,
@@ -21,5 +21,5 @@ export default {
     prevState,
     reset,
     setContent,
-    setText,
+    setText
 }
