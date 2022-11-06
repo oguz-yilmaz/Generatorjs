@@ -15,7 +15,7 @@ import { isDef, isPlainObject, isObject } from '@utils'
 import { createElementsObjectUntil } from '@dom-utils'
 
 class GeneratorJs {
-    #fragment: DocumentFragment | null = null
+    public $fragment: DocumentFragment | null = null
 
     public render = render
 
@@ -51,7 +51,7 @@ class GeneratorJs {
         renderedDom = createElementsObjectUntil(elementsObject)
 
         if (renderedDom !== null && isObject(renderedDom)) {
-            this.#fragment = renderedDom
+            this.$fragment = renderedDom
         }
 
         this.render()

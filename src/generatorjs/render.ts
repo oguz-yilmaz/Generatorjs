@@ -7,7 +7,7 @@ import { createElement } from '../dom-utils'
  * its parent node before appending it to some other node).
  * This also means that a node can't be in two points of the document simultaneously. So if the
  * node already has a parent, it is first removed, then appended at the new position.
-*
+ *
  * A common use for DocumentFragment is to create one, assemble a DOM subtree within it, then
  * append or insert the fragment into the DOM using Node interface methods such as appendChild()
  * or insertBefore(). Doing this moves the fragment's nodes into the DOM, leaving behind an empty
