@@ -1,6 +1,7 @@
-import { stringStarts, isString } from '../utils'
+import { stringStarts, isString } from '@utils'
+import GeneratorJs from '../index'
 
-export default function deleteEvent(event, handler) {
+export default function deleteEvent(this: GeneratorJs, event, handler) {
     const element = this.$selected ? this.$selected : this.$el
     if (!element) {
         throw new Error('No element selected.')
@@ -16,11 +17,9 @@ export default function deleteEvent(event, handler) {
 
     if (element.removeEventListener) {
         element.removeEventListener(event, handler, false)
-    }
-    else if (element.detachEvent) {
+    } else if (element.detachEvent) {
         element.detachEvent(`on${event}`, handler)
-    }
-    else {
+    } else {
         element[`on${event}`] = null
     }
 

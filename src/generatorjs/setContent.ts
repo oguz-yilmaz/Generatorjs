@@ -1,4 +1,6 @@
-export default function setContent(content, elem) {
+import GeneratorJs from '../index'
+
+export default function setContent(this: GeneratorJs, content, elem) {
     if (elem !== null) {
         _html(elem, content)
     }

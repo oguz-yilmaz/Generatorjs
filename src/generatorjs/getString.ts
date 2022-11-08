@@ -1,5 +1,6 @@
-import { getStringOfElement } from '../dom-utils'
+import { getStringOfElement } from '@dom-utils'
+import GeneratorJs from '../index'
 
-export default function getString() {
+export default function getString(this: GeneratorJs) {
     return getStringOfElement(this.$selected ? this.$selected : this.$fragment)
 }

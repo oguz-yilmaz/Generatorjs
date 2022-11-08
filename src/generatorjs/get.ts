@@ -1,9 +1,12 @@
-import { TAG_NAMES } from '../constants'
-import { stringStarts, isString } from '../utils'
-import { createElement } from '../dom-utils'
+import { TAG_NAMES } from '@constants'
+import { stringStarts, isString } from '@utils'
+import { createElement } from '@dom-utils'
 import selectElement from './selectElement'
+import GeneratorJs from '../index'
 
-export default function get() {
+// It's forbidden in JS to have a parameter name as `this` so
+// TS uses this to defined explicitly the value of this for a function.
+export default function get(this: GeneratorJs) {
     const len = arguments.length
     let currentElement
     let fragment

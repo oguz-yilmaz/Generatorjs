@@ -1,4 +1,5 @@
-import { createElement } from '../dom-utils'
+import { createElement } from '@dom-utils'
+import GeneratorJs from '../index'
 
 /**
  * Why are we using fragment.cloneNode ?
@@ -15,7 +16,7 @@ import { createElement } from '../dom-utils'
  * and render is triggered instead of potentially one for each node inserted if they were inserted
  * separately.
  * */
-export default function render() {
+export default function render(this: GeneratorJs) {
     let div = createElement('div')
     const fragment = this.$fragment.cloneNode(true)
 

@@ -1,14 +1,20 @@
-import { isDef } from '../utils'
-import { JQUERY_AVAILABLE } from '../constants'
-import { createElement } from '../dom-utils'
+import { isDef } from '@utils'
+import { JQUERY_AVAILABLE } from '@constants'
+import { createElement } from '@dom-utils'
+import GeneratorJs from '../index'
 
-export default function selectElement(fragment, selector, type) {
+export default function selectElement(
+    this: GeneratorJs,
+    fragment,
+    selector,
+    type
+) {
     let d
 
     if (
-        isDef(fragment)
-        && isDef(fragment.querySelector)
-        && (type === 'id' || type === 'class')
+        isDef(fragment) &&
+        isDef(fragment.querySelector) &&
+        (type === 'id' || type === 'class')
     ) {
         if (type === 'class') {
             return fragment.querySelectorAll(selector)
@@ -44,17 +50,11 @@ export default function selectElement(fragment, selector, type) {
                 : d.getElementsByTagName(selector.toUpperCase())
         case 'name':
             return JQUERY_AVAILABLE
-                ? jQuery(this.$el)
-                    .find(`[name=${selector}]`)
-                    .get().length === 1
-                    ? jQuery(this.$el)
-                        .find(`[name=${selector}]`)
-                        .get(0)
-                    : jQuery(this.$el)
-                        .find(`[name=${selector}]`)
-                        .get()
+                ? jQuery(this.$el).find(`[name=${selector}]`).get().length === 1
+                    ? jQuery(this.$el).find(`[name=${selector}]`).get(0)
+                    : jQuery(this.$el).find(`[name=${selector}]`).get()
                 : d.getElementsByName(selector)
     }
 
-    throw new Error('We couldn\'t get the element. Please check your selectors!')
+    throw new Error("We couldn't get the element. Please check your selectors!")
 }

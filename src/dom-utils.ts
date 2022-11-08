@@ -1,40 +1,43 @@
-import {EMPTY_OBJECT, JQUERY_AVAILABLE} from './constants'
+import { EMPTY_OBJECT, JQUERY_AVAILABLE } from '@constants'
 import {
     isPlainObject,
     hasOwn,
     isArray,
     isDef,
     _html,
-    emptyArray,
-} from './utils'
+    emptyArray
+} from '@utils'
 
 const doc = window.document
 
 export const createElement = (el) => doc.createElement(el)
 
-export const createText = (txt) => doc.createTextNode(txt)
+export const createText = (text: string) => doc.createTextNode(text)
 
 const hasSplitValue = (value) => value !== [''] || value !== []
 
 export const attributeSplitter = (input) => {
     const regExpAttribute = /\(([^)]+)\)/ // between  ( .. )
 
-    const matches = input.indexOf('(') !== -1 && input.indexOf(')') !== -1
-        ? regExpAttribute.exec(input)
-        : input
+    const matches =
+        input.indexOf('(') !== -1 && input.indexOf(')') !== -1
+            ? regExpAttribute.exec(input)
+            : input
     let attributes
     const resultArray = []
 
     if (matches !== null) {
-        attributes = isArray(matches) && isDef(matches[1])
-            ? matches[1].split(',')
-            : matches.split(',')
+        attributes =
+            isArray(matches) && isDef(matches[1])
+                ? matches[1].split(',')
+                : matches.split(',')
 
         if (attributes !== null && hasSplitValue(attributes)) {
             if (attributes !== [] || attributes !== ['']) {
                 for (let p = 0, keyVal; p < attributes.length; p++) {
                     keyVal = attributes[p].split('=')
-                    if (hasSplitValue(keyVal)) [].push.call(resultArray, [keyVal[0], keyVal[1]])
+                    if (hasSplitValue(keyVal))
+                        [].push.call(resultArray, [keyVal[0], keyVal[1]])
                 }
             }
         }
@@ -85,7 +88,9 @@ export const createElementsObjectUntil = (arr) => {
                         elem.append(createElementsObjectUntil(arr[i].child))
                     } catch (e) {
                         // for ie support
-                        elem.appendChild(createElementsObjectUntil(arr[i].child))
+                        elem.appendChild(
+                            createElementsObjectUntil(arr[i].child)
+                        )
                     }
                 } else {
                     throw new TypeError('Child elements must be an array.')

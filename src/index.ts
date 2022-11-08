@@ -15,29 +15,23 @@ import { isDef, isPlainObject, isObject } from '@utils'
 import { createElementsObjectUntil } from '@dom-utils'
 
 class GeneratorJs {
-    public $fragment: DocumentFragment | null = null
+    get = get
+    reset = reset
+    render = render
+    append = append
+    setText = setText
+    attachTo = attachTo
+    addEvent = addEvent
+    getString = getString
+    prevState = prevState
+    setContent = setContent
+    deleteEvent = deleteEvent
 
-    public render = render
-
-    public addEvent = addEvent
-
-    public append = append
-
-    public attachTo = attachTo
-
-    public deleteEvent = deleteEvent
-
-    public get = get
-
-    public getString = getString
-
-    public prevState = prevState
-
-    public reset = reset
-
-    public setContent = setContent
-
-    public setText = setText
+    $el: HTMLElement | null = null
+    $prevEl: HTMLElement | null = null
+    $selected: HTMLElement | null = null
+    $fragment: DocumentFragment | null = null
+    $prevFragment: DocumentFragment | null = null
 
     constructor(elementsObject = {}) {
         let renderedDom = null

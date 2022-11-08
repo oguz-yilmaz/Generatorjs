@@ -1,8 +1,9 @@
-import { isDef } from '../utils'
-import { JQUERY_AVAILABLE } from '../constants'
+import { isDef } from '@utils'
+import { JQUERY_AVAILABLE } from '@constants'
+import GeneratorJs from '../index'
 
 // must provide element object or jQuery object
-export default function attachTo(element) {
+export default function attachTo(this: GeneratorJs, element) {
     if (!this.$selected && !this.$el) {
         throw new Error('No elements Generatorjs object has to be attached!')
     }
@@ -16,10 +17,9 @@ export default function attachTo(element) {
     // if it is html element
     else if (isDef(element.nodeType) && element.nodeType > 0) {
         element.insertBefore(currentElement, element.firstChild)
-    }
-    else {
+    } else {
         throw new Error(
-            'Elements to be attached must be of either type Element Object or JQuery Object',
+            'Elements to be attached must be of either type Element Object or JQuery Object'
         )
     }
 
