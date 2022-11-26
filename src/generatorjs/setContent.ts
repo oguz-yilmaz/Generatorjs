@@ -1,11 +1,12 @@
-import GeneratorJs from '../index'
+import { isString, setHtml } from '@utils'
+import GeneratorJs from '@generator'
 
 export default function setContent(this: GeneratorJs, content, elem) {
     if (elem !== null) {
-        _html(elem, content)
+        setHtml(elem, content)
     }
     if (isString(content)) {
-        _html(this.$selected, content)
+        setHtml(this.$selected, content)
     }
     return this
 }

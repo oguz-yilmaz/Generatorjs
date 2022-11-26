@@ -1,5 +1,3 @@
-import { JQUERY_AVAILABLE } from './constants'
-
 /**
  * Strict object type check. Only returns true
  * for plain JavaScript objects.
@@ -91,23 +89,18 @@ export const isNodeList = (node) => {
 
 /**
  * Cross-browser means of setting innerHTML on a DOM Element.
- *
- * @param {Element} el
- * @param {string} html
  */
-export const _html = JQUERY_AVAILABLE
-    ? (el, html) => jQuery(el).html(html)
-    : (el, html) => {
-          try {
-              el.innerHTML = html
-          } catch (e) {
-              const div = document.createElement('div')
-              div.innerHTML = html
+export const setHtml = (el, html) => {
+    try {
+        el.innerHTML = html
+    } catch (e) {
+        const div = document.createElement('div')
+        div.innerHTML = html
 
-              while (el.firstChild) el.removeChild(el.firstChild)
-              while (div.firstChild) el.appendChild(div.firstChild)
-          }
-      }
+        while (el.firstChild) el.removeChild(el.firstChild)
+        while (div.firstChild) el.appendChild(div.firstChild)
+    }
+}
 
 export const stringStarts = (str, starts) =>
     str.substring(0, starts.length) === starts

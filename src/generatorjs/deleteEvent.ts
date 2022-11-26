@@ -1,5 +1,5 @@
+import GeneratorJs from '@generator'
 import { stringStarts, isString } from '@utils'
-import GeneratorJs from '../index'
 
 export default function deleteEvent(this: GeneratorJs, event, handler) {
     const element = this.$selected ? this.$selected : this.$el

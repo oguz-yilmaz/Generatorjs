@@ -1,7 +1,7 @@
+import GeneratorJs from '@generator'
 import { JQUERY_AVAILABLE } from '@constants'
 import { createElement } from '@dom-utils'
 import { isNodeList, isDef, forEach } from '@utils'
-import GeneratorJs from '../index'
 
 // args can be NodeList , element ,JQuery object or Generatorjs instance
 export default function append(this: GeneratorJs, args) {

@@ -6,6 +6,7 @@
         "rootDir": ".",
         "paths": {
             "@generatorjs": ["./src/generatorjs/index"],
+            "@generator": ["./src/index"],
             "@test/*": ["./test/*"],
             "@utils": ["./src/utils"],
             "@dom-utils": ["./src/dom-utils"],

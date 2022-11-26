@@ -1,4 +1,4 @@
-import GeneratorJs from '../index'
+import GeneratorJs from '@generator'
 
 export default function prevState(this: GeneratorJs) {
     if (this.$prevEl) {

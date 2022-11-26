@@ -1,5 +1,5 @@
+import GeneratorJs from '@generator'
 import { stringStarts, isString } from '@utils'
-import GeneratorJs from '../index'
 
 export default function addEvent(this: GeneratorJs, event, handler) {
     const currentElement = this.$selected ? this.$selected : this.$el

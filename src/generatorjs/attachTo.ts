@@ -1,6 +1,6 @@
+import GeneratorJs from '@generator'
 import { isDef } from '@utils'
 import { JQUERY_AVAILABLE } from '@constants'
-import GeneratorJs from '../index'
 
 // must provide element object or jQuery object
 export default function attachTo(this: GeneratorJs, element) {

@@ -1,12 +1,12 @@
 import { createElement } from '@dom-utils'
-import GeneratorJs from '../index'
+import GeneratorJs from '@generator'
 
 /**
  * Why are we using fragment.cloneNode ?
  * If child is a reference to an existing node in the document, appendChild moves it from its
  * current position to the new position (i.e. there is no requirement to remove the node from
  * its parent node before appending it to some other node).
- * This also means that a node can't be in two points of the document simultaneously. So if the
+ * This also means that a node can't be in two different places of the document simultaneously. So if the
  * node already has a parent, it is first removed, then appended at the new position.
  *
  * A common use for DocumentFragment is to create one, assemble a DOM subtree within it, then

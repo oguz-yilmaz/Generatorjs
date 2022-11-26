@@ -1,5 +1,5 @@
 import { createText } from '@dom-utils'
-import GeneratorJs from '../index'
+import GeneratorJs from '@generator'
 
 export default function setText(this: GeneratorJs, text: string) {
     if (!this.$selected) {
