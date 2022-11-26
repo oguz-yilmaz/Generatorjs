@@ -9,7 +9,7 @@
             "@generator": ["./src/index"],
             "@test/*": ["./test/*"],
             "@utils": ["./src/utils"],
-            "@dom-utils": ["./src/dom-utils"],
+            "@dom/*": ["./src/dom/*"],
             "@constants": ["./src/constants"]
         },
         "noEmit": true,

@@ -1,6 +1,6 @@
 import GeneratorJs from '@generator'
 import { JQUERY_AVAILABLE } from '@constants'
-import { createElement } from '@dom-utils'
+import { createElement } from '@dom/utils'
 import { isNodeList, isDef, forEach } from '@utils'
 
 // args can be NodeList , element ,JQuery object or Generatorjs instance

@@ -1,13 +1,17 @@
 import { EMPTY_OBJECT, JQUERY_AVAILABLE } from '@constants'
-import { isPlainObject, hasOwn, isDef, _html, emptyArray } from '@utils'
+import { isPlainObject, hasOwn, isDef, setHtml, emptyArray } from '@utils'
+import { createElement, createText } from './utils'
 
-const doc = window.document
+export const setAttributes = (elem, attributes) => {
+    if (isDef(attributes) && Array.isArray(attributes)) {
+        for (let i = 0, attr; i < attributes.length; i += 1) {
+            attr = attributes[i]
+            elem.setAttribute(attr[0], attr[1])
+        }
+    }
 
-export const createElement = (el) => doc.createElement(el)
-
-export const createText = (text: string) => doc.createTextNode(text)
-
-const hasSplitValue = (value) => value !== [''] || value !== []
+    return elem
+}
 
 export const attributeSplitter = (input) => {
     const regExpAttribute = /\(([^)]+)\)/ // between  ( .. )
@@ -25,6 +29,8 @@ export const attributeSplitter = (input) => {
                 ? matches[1].split(',')
                 : matches.split(',')
 
+        const hasSplitValue = (value) => value !== [''] || value !== []
+
         if (attributes !== null && hasSplitValue(attributes)) {
             if (attributes !== [] || attributes !== ['']) {
                 for (let p = 0, keyVal; p < attributes.length; p++) {
@@ -39,30 +45,17 @@ export const attributeSplitter = (input) => {
     return resultArray
 }
 
-// safer to use fragment instead of creating element and adding it to dom as it
-// can destroy the document structure
-export const createFragment = () => window.document.createDocumentFragment()
-
-export const setAttributes = (elem, attributes) => {
-    if (isDef(attributes) && Array.isArray(attributes)) {
-        for (let i = 0, attr; i < attributes.length; i++) {
-            attr = attributes[i]
-            elem.setAttribute(attr[0], attr[1])
-        }
-    }
-
-    return elem
-}
-
 export const createElementsObjectUntil = (arr) => {
-    const fragment = createFragment()
+    // safer to use fragment instead of creating element and adding it to dom as it
+    // can destroy the document structure
+    const fragment = window.document.createDocumentFragment()
 
     if (isPlainObject(arr) && arr !== EMPTY_OBJECT) {
         arr = [arr]
     }
 
     if (Array.isArray(arr)) {
-        for (let i = 0, elem; i < arr.length; i++) {
+        for (let i = 0, elem; i < arr.length; i = +1) {
             elem = createElement(arr[i].el)
 
             if (hasOwn(arr[i], 'attr')) {
@@ -70,9 +63,9 @@ export const createElementsObjectUntil = (arr) => {
             }
             if (hasOwn(arr[i], 'inner')) {
                 if (JQUERY_AVAILABLE && arr[i].inner instanceof jQuery) {
-                    _html(elem, arr[i].inner.clone())
+                    setHtml(elem, arr[i].inner.clone())
                 } else {
-                    _html(elem, arr[i].inner)
+                    setHtml(elem, arr[i].inner)
                 }
             }
             if (hasOwn(arr[i], 'child')) {
@@ -89,15 +82,10 @@ export const createElementsObjectUntil = (arr) => {
                     throw new TypeError('Child elements must be an array.')
                 }
             }
+
             fragment.appendChild(elem)
         }
     }
 
     return fragment
-}
-
-export const getStringOfElement = (el) => {
-    const tmp = document.createElement('div')
-    tmp.appendChild(el)
-    return tmp.innerHTML
 }

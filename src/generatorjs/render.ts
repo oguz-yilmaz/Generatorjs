@@ -1,4 +1,4 @@
-import { createElement } from '@dom-utils'
+import { createElement } from '@dom/utils'
 import GeneratorJs from '@generator'
 
 /**

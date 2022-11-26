@@ -1,4 +1,4 @@
-import { createText } from '@dom-utils'
+import { createText } from '@dom/utils'
 import GeneratorJs from '@generator'
 
 export default function setText(this: GeneratorJs, text: string) {

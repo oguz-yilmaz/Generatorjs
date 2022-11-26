@@ -1,6 +1,6 @@
 import { isDef } from '@utils'
 import { JQUERY_AVAILABLE } from '@constants'
-import { createElement } from '@dom-utils'
+import { createElement } from '@dom/utils'
 import GeneratorJs from '@generator'
 
 const selectIdJQuery = (element) => element

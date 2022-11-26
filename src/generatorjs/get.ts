@@ -1,7 +1,7 @@
 import GeneratorJs from '@generator'
 import { TAG_NAMES } from '@constants'
 import { stringStarts, isString } from '@utils'
-import { createElement } from '@dom-utils'
+import { createElement } from '@dom/utils'
 import selectElement from './selectElement'
 
 // It's forbidden in JS to have a parameter name as `this` so
