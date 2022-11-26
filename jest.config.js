@@ -14,5 +14,7 @@ module.exports = {
         '@dom-utils': '<rootDir>/src/dom-utils.ts',
         '@constants': '<rootDir>/src/constants.ts'
     },
+    collectCoverage: true,
+    coverageReporters: ['html'],
     moduleDirectories: ['node_modules']
 }
