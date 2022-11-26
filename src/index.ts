@@ -5,14 +5,13 @@ import {
     attachTo,
     deleteEvent,
     get,
-    getString,
     prevState,
     reset,
     setContent,
     setText
 } from '@generatorjs'
 import { isDef, isPlainObject, isObject } from '@utils'
-import { createElementsObjectUntil } from '@dom-utils'
+import { createElementsObjectUntil } from '@dom'
 
 class GeneratorJs {
     get = get
@@ -22,7 +21,6 @@ class GeneratorJs {
     setText = setText
     attachTo = attachTo
     addEvent = addEvent
-    getString = getString
     prevState = prevState
     setContent = setContent
     deleteEvent = deleteEvent

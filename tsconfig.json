@@ -9,6 +9,7 @@
             "@generator": ["./src/index"],
             "@test/*": ["./test/*"],
             "@utils": ["./src/utils"],
+            "@dom": ["./src/dom/index.ts"],
             "@dom/*": ["./src/dom/*"],
             "@constants": ["./src/constants"]
         },

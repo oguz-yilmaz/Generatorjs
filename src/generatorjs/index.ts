@@ -4,7 +4,6 @@ import append from './append'
 import attachTo from './attachTo'
 import deleteEvent from './deleteEvent'
 import get from './get'
-import getString from './getString'
 import prevState from './prevState'
 import reset from './reset'
 import setContent from './setContent'
@@ -17,7 +16,6 @@ export {
     attachTo,
     deleteEvent,
     get,
-    getString,
     prevState,
     reset,
     setContent,

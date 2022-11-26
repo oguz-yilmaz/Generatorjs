@@ -12,6 +12,7 @@ module.exports = {
         '@generator': '<rootDir>/src/index.ts',
         '@utils': '<rootDir>/src/utils.ts',
         '^@dom/(.*)$': '<rootDir>/src/dom/$1',
+        '@dom': '<rootDir>/src/dom/index.ts',
         '@constants': '<rootDir>/src/constants.ts'
     },
     collectCoverage: true,
