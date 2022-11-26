@@ -8,7 +8,8 @@ module.exports = {
     // modulePaths: [__dirname + '/src'],
     testEnvironment: 'jest-environment-jsdom',
     moduleNameMapper: {
-        '@generatorjs': '<rootDir>/src/index.ts',
+        '@generatorjs': '<rootDir>/src/generatorjs/index.ts',
+        '@generator': '<rootDir>/src/index.ts',
         '@utils': '<rootDir>/src/utils.ts',
         '@dom-utils': '<rootDir>/src/dom-utils.ts',
         '@constants': '<rootDir>/src/constants.ts'

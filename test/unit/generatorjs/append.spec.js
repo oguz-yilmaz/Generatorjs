@@ -1,36 +1,36 @@
-import Generatorjs from 'generatorjs';
-import { screen } from '@testing-library/dom';
+import Generatorjs from '@generator'
+import { screen } from '@testing-library/dom'
 
 test('appends ul to a single div', () => {
     const expected = `
-  <div>
-    <ul></ul>
-  </div>
-  `;
+        <div>
+           <ul></ul>
+        </div>
+    `
 
     const gen = new Generatorjs({
-        el: 'div',
-    });
+        el: 'div'
+    })
 
-    gen.append(document.createElement('ul'));
+    gen.append(document.createElement('ul'))
 
-    expect(gen.$el).toContainHTML(''.stripSpaces(expected));
-});
+    expect(gen.$el).toContainHTML(''.stripSpaces(expected))
+})
 
 test('appends div to a single div with innerText', () => {
     const expected = `
-  <div>
-    Example
-    <div></div>
-  </div>
-  `;
+        <div>
+            Example
+            <div></div>
+        </div>
+    `
 
     const gen = new Generatorjs({
         el: 'div',
-        inner: 'Example',
-    });
+        inner: 'Example'
+    })
 
-    gen.append(document.createElement('div'));
+    gen.append(document.createElement('div'))
 
-    expect(gen.$el).toContainHTML(''.stripSpaces(expected));
-});
+    expect(gen.$el).toContainHTML(''.stripSpaces(expected))
+})
