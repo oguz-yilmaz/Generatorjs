@@ -1,12 +1,5 @@
 import { EMPTY_OBJECT, JQUERY_AVAILABLE } from '@constants'
-import {
-    isPlainObject,
-    hasOwn,
-    isArray,
-    isDef,
-    _html,
-    emptyArray
-} from '@utils'
+import { isPlainObject, hasOwn, isDef, _html, emptyArray } from '@utils'
 
 const doc = window.document
 
@@ -28,7 +21,7 @@ export const attributeSplitter = (input) => {
 
     if (matches !== null) {
         attributes =
-            isArray(matches) && isDef(matches[1])
+            Array.isArray(matches) && isDef(matches[1])
                 ? matches[1].split(',')
                 : matches.split(',')
 
@@ -51,7 +44,7 @@ export const attributeSplitter = (input) => {
 export const createFragment = () => window.document.createDocumentFragment()
 
 export const setAttributes = (elem, attributes) => {
-    if (isDef(attributes) && isArray(attributes)) {
+    if (isDef(attributes) && Array.isArray(attributes)) {
         for (let i = 0, attr; i < attributes.length; i++) {
             attr = attributes[i]
             elem.setAttribute(attr[0], attr[1])
@@ -68,7 +61,7 @@ export const createElementsObjectUntil = (arr) => {
         arr = [arr]
     }
 
-    if (isArray(arr)) {
+    if (Array.isArray(arr)) {
         for (let i = 0, elem; i < arr.length; i++) {
             elem = createElement(arr[i].el)
 
@@ -83,7 +76,7 @@ export const createElementsObjectUntil = (arr) => {
                 }
             }
             if (hasOwn(arr[i], 'child')) {
-                if (isArray(arr[i].child) && !emptyArray(arr[i].child)) {
+                if (Array.isArray(arr[i].child) && !emptyArray(arr[i].child)) {
                     try {
                         elem.append(createElementsObjectUntil(arr[i].child))
                     } catch (e) {

@@ -10,7 +10,8 @@ import { JQUERY_AVAILABLE } from './constants'
  * isPlainObject([]) ==> false
  * isPlainObject(window) ==> false
  */
-export const isPlainObject = (obj) => Object.prototype.toString.call(obj) === '[object Object]'
+export const isPlainObject = (obj) =>
+    Object.prototype.toString.call(obj) === '[object Object]'
 
 // check if value is a string
 export const isString = (value) => {
@@ -23,11 +24,10 @@ export const isString = (value) => {
 
 export const isDef = (v) => v !== undefined && v !== null
 
-export const isArray = Array.isArray || ((value) => Object.prototype.toString.call(value) === '[object Array]')
-
 export const isObject = (value) => Object(value) === value
 
-export const emptyArray = (array) => typeof array !== 'undefined' && array !== null && array.length <= 0
+export const emptyArray = (array) =>
+    typeof array !== 'undefined' && array !== null && array.length <= 0
 
 export const forEach = (array, callback, scope) => {
     for (let i = 0; i < array.length; i++) {
@@ -39,7 +39,10 @@ export const forEach = (array, callback, scope) => {
  * Call-bound version of Object.prototype.hasOwnProperty(), ready to be called
  * with an object and property name.
  */
-export const hasOwn = ((() => (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop))())
+export const hasOwn = (
+    () => (obj, prop) =>
+        Object.prototype.hasOwnProperty.call(obj, prop)
+)()
 
 /**
  * Copies own properties of any given object to destination object
@@ -64,19 +67,20 @@ export const isNodeList = (node) => {
     const stringRepr = Object.prototype.toString.call(node)
     let res
 
-    res = typeof node === 'object'
-    && /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr)
-    && typeof node.length === 'number'
-    && (node.length === 0
-      || (typeof node[0] === 'object' && node[0].nodeType > 0))
+    res =
+        typeof node === 'object' &&
+        /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
+        typeof node.length === 'number' &&
+        (node.length === 0 ||
+            (typeof node[0] === 'object' && node[0].nodeType > 0))
 
     if (res === false) {
-    // try for IE
+        // try for IE
         if (
-            typeof node.length === 'number'
-      && typeof node.item !== 'undefined'
-      && typeof node.nextNode === 'function'
-      && typeof node.reset === 'function'
+            typeof node.length === 'number' &&
+            typeof node.item !== 'undefined' &&
+            typeof node.nextNode === 'function' &&
+            typeof node.reset === 'function'
         ) {
             res = true
         }
@@ -94,16 +98,16 @@ export const isNodeList = (node) => {
 export const _html = JQUERY_AVAILABLE
     ? (el, html) => jQuery(el).html(html)
     : (el, html) => {
-        try {
-            el.innerHTML = html
-        }
-        catch (e) {
-            const div = document.createElement('div')
-            div.innerHTML = html
+          try {
+              el.innerHTML = html
+          } catch (e) {
+              const div = document.createElement('div')
+              div.innerHTML = html
 
-            while (el.firstChild) el.removeChild(el.firstChild)
-            while (div.firstChild) el.appendChild(div.firstChild)
-        }
-    }
+              while (el.firstChild) el.removeChild(el.firstChild)
+              while (div.firstChild) el.appendChild(div.firstChild)
+          }
+      }
 
-export const stringStarts = (str, starts) => str.substring(0, starts.length) === starts
+export const stringStarts = (str, starts) =>
+    str.substring(0, starts.length) === starts
