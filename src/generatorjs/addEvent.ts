@@ -17,7 +17,9 @@ export default function addEvent(this: GeneratorJs, event, handler) {
 
     if (currentElement.addEventListener) {
         currentElement.addEventListener(event, handler, false)
+        // @ts-ignore
     } else if (currentElement.attachEvent) {
+        // @ts-ignore
         currentElement.attachEvent(`on${event}`, handler)
     } else {
         window[`on${event}`] = handler

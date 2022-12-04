@@ -71,7 +71,6 @@ export const create = (definitions: GeneratorDefinitions) => {
     for (let i = 0; i < definitions.length; i = +1) {
         elem = createElement(definitions[i]?.el || 'div')
 
-        // ***** suedo code
         // const chain = new TaskChain(definitions[i])
         // chain.registerTask(innerProcessor)
         // chain.registerTask(attributeProcessor)
@@ -79,15 +78,13 @@ export const create = (definitions: GeneratorDefinitions) => {
         // const elem = chain.processChain()
         // fragment.appendChild(elem)
 
-        // *****
-
         if (hasOwn(definitions[i], 'attr')) {
             // attributeCreator.create(elem, definitions[i].attr)
             setAttributes(elem, attributeSplitter(definitions[i].attr))
         }
 
-        // with inner we directly replace the innetHTML with another DOM Element
-        // diferent than child attr
+        // with inner attribute we directly replace the innerHTML with another
+        // DOM Element | Generatorjs object | NodeList
         if (hasOwn(definitions[i], 'inner')) {
             setHtml(elem, definitions[i].inner)
         }

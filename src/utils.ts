@@ -21,35 +21,10 @@ export const isObject = (value) => Object(value) === value
 export const emptyArray = (array) =>
     typeof array !== 'undefined' && array !== null && array.length <= 0
 
-export const forEach = (array, callback, scope) => {
-    for (let i = 0; i < array.length; i++) {
-        callback.call(scope, i, array[i])
-    }
-}
-
 export const hasOwn = (
     () => (obj, prop) =>
         Object.prototype.hasOwnProperty.call(obj, prop)
 )()
-
-/**
- * Copies own properties of any given object to destination object
- */
-export const extend = (dest) => {
-    for (let i = 1, l = arguments.length, src; i < l; i++) {
-        src = arguments[i]
-
-        if (src && isObject(src)) {
-            for (const prop in src) {
-                if (hasOwn(src, prop)) {
-                    dest[prop] = src[prop]
-                }
-            }
-        }
-    }
-
-    return dest
-}
 
 export const isNodeList = (node) => {
     const stringRepr = Object.prototype.toString.call(node)
