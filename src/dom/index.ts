@@ -1,4 +1,4 @@
-import type { GeneratorDefinitions } from 'types/attributes'
+import type { GeneratorDefinitions } from 'types'
 import { EMPTY_OBJECT } from '@constants'
 import { isPlainObject, hasOwn, isDef, setHtml, emptyArray } from '@utils'
 import { createElement, appendTo } from './utils'
@@ -30,14 +30,15 @@ export const attributeSplitter = (input) => {
                 ? matches[1].split(',')
                 : matches.split(',')
 
-        const hasSplitValue = (value) => value !== [''] || value !== []
+        // @ts-ignore
+        const isNonEmptySplit = (arr) => !arr.includes('') && arr.length > 0
 
-        if (attributes !== null && hasSplitValue(attributes)) {
-            if (attributes !== [] || attributes !== ['']) {
-                for (let p = 0, keyVal; p < attributes.length; p++) {
-                    keyVal = attributes[p].split('=')
-                    if (hasSplitValue(keyVal))
-                        [].push.call(resultArray, [keyVal[0], keyVal[1]])
+        if (isNonEmptySplit(attributes)) {
+            for (let p = 0, keyVal; p < attributes.length; p++) {
+                keyVal = attributes[p].split('=')
+                if (isNonEmptySplit(keyVal)) {
+                    // @ts-ignore
+                    resultArray.push([keyVal[0], keyVal[1]])
                 }
             }
         }

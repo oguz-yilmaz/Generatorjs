@@ -17,7 +17,9 @@ export default function deleteEvent(this: GeneratorJs, event, handler) {
 
     if (element.removeEventListener) {
         element.removeEventListener(event, handler, false)
+        // @ts-ignore
     } else if (element.detachEvent) {
+        // @ts-ignore
         element.detachEvent(`on${event}`, handler)
     } else {
         element[`on${event}`] = null

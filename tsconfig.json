@@ -13,7 +13,6 @@
             "@dom": ["./src/dom/index.ts"],
             "@dom/*": ["./src/dom/*"],
             "types": ["./src/types/index.ts"],
-            "types/*": ["./src/types/*"],
             "@constants": ["./src/constants"]
         },
         "noEmit": true,
