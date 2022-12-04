@@ -1,5 +1,3 @@
-export const JQUERY_AVAILABLE = typeof jQuery !== 'undefined'
-
 export const EMPTY_OBJECT = Object.freeze({})
 
 export const HTML_ELEMENT_ATTRIBUTES: Record<string, Array<string>> = {

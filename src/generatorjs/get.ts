@@ -40,7 +40,6 @@ export default function get(this: GeneratorJs) {
             const name = elem.split('=')[1]
             currentElement = selectElement.call(this, fragment, name, 'name')
             // for attribute selector
-            // JQuery jQuery( "[attribute='value']" )
         } else if (stringStarts(elem, '[') || elem.indexOf('[') !== -1) {
             currentElement = selectElement.call(this, fragment, elem, 'attr')
         } else if (elem === '*') {

@@ -1,5 +1,4 @@
 import Generatorjs from '@generator'
-import $ from 'jquery'
 
 const nodeListToArray = (node) => {
     if (Array.isArray(node)) {

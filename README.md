@@ -8,7 +8,6 @@ Just download and include the library, and you are good to go :)
 ```javascript
 <script src="/path/to/Generatorjs.js"></script>
 ```
-If you have jQuery loaded in your page, then Generatorjs will make use of it.
 
 #### Installing via bower
 
