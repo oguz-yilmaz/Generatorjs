@@ -1,7 +1,7 @@
 module.exports = {
-    // preset: 'ts-jest',
+    preset: 'ts-jest/presets/js-with-ts',
     clearMocks: true,
-    setupFilesAfterEnv: ['./test/jest.setup.js'],
+    setupFilesAfterEnv: ['./test/jest.setup.ts'],
     testEnvironment: 'jest-environment-jsdom',
     moduleNameMapper: {
         '@generatorjs': '<rootDir>/src/generatorjs/index.ts',
@@ -11,7 +11,7 @@ module.exports = {
         '@dom': '<rootDir>/src/dom/index.ts',
         '@constants': '<rootDir>/src/constants.ts',
         '^types/(.*)$': '<rootDir>/src/types/$1',
-        types: '<rootDir>/src/types/index.ts'
+        '^types$': '<rootDir>/src/types/index.ts'
     },
     collectCoverage: true,
     coverageReporters: ['html'],
