@@ -8,9 +8,10 @@
         "tests": "tests"
     },
     "scripts": {
-        "clean": "rm -rf build",
         "watch": "rollup -c -w",
         "test": "jest",
+        "test:watch": "jest --watch",
+        "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
         "build": "rollup --config",
         "check-types": "tsc",
         "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|js|json)\"",
@@ -73,6 +74,7 @@
         "typescript": "^4.8.4"
     },
     "dependencies": {
+        "@o.yilmaz/taskchain": "^1.0.1",
         "core-js": "^3.7.0"
     }
 }

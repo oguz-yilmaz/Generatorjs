@@ -11,7 +11,7 @@ import {
     setText
 } from '@generatorjs'
 import { isDef, isPlainObject, isObject } from '@utils'
-import { createElementsObjectUntil } from '@dom'
+import { create } from '@dom'
 
 class GeneratorJs {
     get = get
@@ -31,16 +31,16 @@ class GeneratorJs {
     $fragment: DocumentFragment | null = null
     $prevFragment: DocumentFragment | null = null
 
-    constructor(elementsObject = {}) {
+    constructor(definitions = {}) {
         let renderedDom = null
 
-        if (!isDef(elementsObject) || !isPlainObject(elementsObject)) {
+        if (!isDef(definitions) || !isPlainObject(definitions)) {
             throw new TypeError(
-                `Element passed to constructor must be an object! ${typeof elementsObject} is given!`
+                `Element passed to constructor must be an object! ${typeof definitions} is given!`
             )
         }
 
-        renderedDom = createElementsObjectUntil(elementsObject)
+        renderedDom = create(definitions)
 
         if (renderedDom !== null && isObject(renderedDom)) {
             this.$fragment = renderedDom

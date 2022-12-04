@@ -1,9 +1,4 @@
 /**
- * Strict object type check. Only returns true
- * for plain JavaScript objects.
- * Any user created object is considered a plain object.
- * The check only guards against native objects, e.g. window.
- *
  * isPlainObject({}) ==> true
  * isPlainObject([]) ==> false
  * isPlainObject(window) ==> false
@@ -11,7 +6,6 @@
 export const isPlainObject = (obj) =>
     Object.prototype.toString.call(obj) === '[object Object]'
 
-// check if value is a string
 export const isString = (value) => {
     if (typeof value === 'string') {
         return true
@@ -33,10 +27,6 @@ export const forEach = (array, callback, scope) => {
     }
 }
 
-/**
- * Call-bound version of Object.prototype.hasOwnProperty(), ready to be called
- * with an object and property name.
- */
 export const hasOwn = (
     () => (obj, prop) =>
         Object.prototype.hasOwnProperty.call(obj, prop)
@@ -63,9 +53,8 @@ export const extend = (dest) => {
 
 export const isNodeList = (node) => {
     const stringRepr = Object.prototype.toString.call(node)
-    let res
 
-    res =
+    let res =
         typeof node === 'object' &&
         /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
         typeof node.length === 'number' &&
@@ -87,9 +76,7 @@ export const isNodeList = (node) => {
     return res
 }
 
-/**
- * Cross-browser means of setting innerHTML on a DOM Element.
- */
+// Cross-browser means of setting innerHTML on a DOM Element.
 export const setHtml = (el, html) => {
     try {
         el.innerHTML = html
