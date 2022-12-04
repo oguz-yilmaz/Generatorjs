@@ -1,11 +1,7 @@
-const { pathsToModuleNameMapper } = require('ts-jest')
-const { compilerOptions } = require('./tsconfig')
-
 module.exports = {
     // preset: 'ts-jest',
     clearMocks: true,
     setupFilesAfterEnv: ['./test/jest.setup.js'],
-    // modulePaths: [__dirname + '/src'],
     testEnvironment: 'jest-environment-jsdom',
     moduleNameMapper: {
         '@generatorjs': '<rootDir>/src/generatorjs/index.ts',
@@ -13,7 +9,9 @@ module.exports = {
         '@utils': '<rootDir>/src/utils.ts',
         '^@dom/(.*)$': '<rootDir>/src/dom/$1',
         '@dom': '<rootDir>/src/dom/index.ts',
-        '@constants': '<rootDir>/src/constants.ts'
+        '@constants': '<rootDir>/src/constants.ts',
+        '^types/(.*)$': '<rootDir>/src/types/$1',
+        types: '<rootDir>/src/types/index.ts'
     },
     collectCoverage: true,
     coverageReporters: ['html'],

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "lib": ["dom"],
         "target": "es2022",
         "module": "ESNext",
         "baseUrl": ".",
@@ -11,12 +12,16 @@
             "@utils": ["./src/utils"],
             "@dom": ["./src/dom/index.ts"],
             "@dom/*": ["./src/dom/*"],
+            "types": ["./src/types/index.ts"],
+            "types/*": ["./src/types/*"],
             "@constants": ["./src/constants"]
         },
         "noEmit": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
+        // remove this after transition
+        "noImplicitAny": false,
         "skipLibCheck": true
     }
 }
