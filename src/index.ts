@@ -25,7 +25,7 @@ class GeneratorJs {
     setContent = setContent
     deleteEvent = deleteEvent
 
-    $el: ChildNode | null = null
+    $el: Node | null = null
     $prevEl: HTMLElement | null = null
     $selected: HTMLElement | null = null
     $fragment: DocumentFragment | null = null
