@@ -1,5 +1,4 @@
 import type { GeneratorDefinitions } from 'types'
-import { EMPTY_OBJECT } from '@constants'
 import { isPlainObject, hasOwn, isDef, setHtml, emptyArray } from '@utils'
 import { createElement, appendTo } from './utils'
 
@@ -63,14 +62,12 @@ export const create = (definitions: GeneratorDefinitions) => {
      * @param DocumentFragment fragment
      */
     const fragment = window.document.createDocumentFragment()
-
-    if (isPlainObject(definitions) && definitions !== EMPTY_OBJECT) {
-        definitions = [definitions]
-    }
+    const defs =
+        definitions && !Array.isArray(definitions) ? [definitions] : definitions
 
     let elem = null
-    for (let i = 0; i < definitions.length; i = +1) {
-        elem = createElement(definitions[i]?.el || 'div')
+    for (let i = 0; i < defs.length; i = +1) {
+        elem = createElement(defs[i]?.el || 'div')
 
         // const chain = new TaskChain(definitions[i])
         // chain.registerTask(innerProcessor)
@@ -79,23 +76,20 @@ export const create = (definitions: GeneratorDefinitions) => {
         // const elem = chain.processChain()
         // fragment.appendChild(elem)
 
-        if (hasOwn(definitions[i], 'attr')) {
+        if (hasOwn(defs[i], 'attr')) {
             // attributeCreator.create(elem, definitions[i].attr)
-            setAttributes(elem, attributeSplitter(definitions[i].attr))
+            setAttributes(elem, attributeSplitter(defs[i].attr))
         }
 
         // with inner attribute we directly replace the innerHTML with another
         // DOM Element | Generatorjs object | NodeList
-        if (hasOwn(definitions[i], 'inner')) {
-            setHtml(elem, definitions[i].inner)
+        if (hasOwn(defs[i], 'inner')) {
+            setHtml(elem, defs[i].inner)
         }
 
-        if (hasOwn(definitions[i], 'child')) {
-            if (
-                Array.isArray(definitions[i].child) &&
-                !emptyArray(definitions[i].child)
-            ) {
-                appendTo(elem, create(definitions[i].child))
+        if (hasOwn(defs[i], 'child')) {
+            if (Array.isArray(defs[i].child) && !emptyArray(defs[i].child)) {
+                appendTo(elem, create(defs[i].child))
             } else {
                 throw new TypeError('Child elements must be an array.')
             }
