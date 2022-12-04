@@ -17,11 +17,11 @@ import GeneratorJs from '@generator'
  * separately.
  * */
 export default function render(this: GeneratorJs) {
-    let div = createElement('div')
-    const fragment = this.$fragment.cloneNode(true)
+    if (this.$fragment) {
+        const div = createElement('div')
+        const fragment = this.$fragment.cloneNode(true)
 
-    div.appendChild(fragment)
-    div = div.firstChild
-
-    this.$el = div
+        div.appendChild(fragment)
+        this.$el = div.firstChild
+    }
 }

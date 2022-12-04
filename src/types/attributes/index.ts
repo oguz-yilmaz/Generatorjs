@@ -3,3 +3,9 @@ export interface GeneratorDefinitions {
     inner: DocumentFragment | Node
     child: GeneratorDefinitions | GeneratorDefinitions[]
 }
+
+export enum Attributes {
+    ATTRIBUTES = 'attrs',
+    INNER = 'inner',
+    CHILD = 'child'
+}
