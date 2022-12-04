@@ -32,15 +32,13 @@ class GeneratorJs {
     $prevFragment: DocumentFragment | null = null
 
     constructor(definitions = {}) {
-        let renderedDom = null
-
         if (!isDef(definitions) || !isPlainObject(definitions)) {
             throw new TypeError(
                 `Element passed to constructor must be an object! ${typeof definitions} is given!`
             )
         }
 
-        renderedDom = create(definitions)
+        const renderedDom = create(definitions)
 
         if (renderedDom !== null && isObject(renderedDom)) {
             this.$fragment = renderedDom
