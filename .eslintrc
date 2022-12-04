@@ -11,6 +11,8 @@
     "rules": {
         "no-param-reassign": 0,
         "semi": ["error", "never"],
+        "import/prefer-default-export": 0,
+        "no-shadow": 0,
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "import/extensions": [
             "error",
