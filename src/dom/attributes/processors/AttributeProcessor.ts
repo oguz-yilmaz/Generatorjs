@@ -1,14 +1,20 @@
 import { AbstractTask } from '@o.yilmaz/taskchain'
-import { hasOwn } from '@utils'
-import { Attributes } from '@dom/attributes'
-import type { GeneratorDefinitions } from 'types/attributes'
+import type { ProcessorParameters } from 'types/attributes'
 
-export default class AttributeProcessor extends AbstractTask {
-    shouldRun(params: GeneratorDefinitions) {
-        const { attr } = params
-
-        return hasOwn(attr, Attributes.ATTRIBUTES)
+class AttributeProcessor extends AbstractTask {
+    shouldRun({ definition }: ProcessorParameters) {
+        return !!definition?.attrs
     }
 
-    run(params: GeneratorDefinitions) {}
+    run({ elem, definition }: ProcessorParameters) {
+        const { attrs } = definition
+
+        ;(attrs || []).forEach((attr, value) => {
+            elem.setAttribute(attr, value)
+        })
+
+        return elem
+    }
 }
+
+export const attributeProcessor = new AttributeProcessor()

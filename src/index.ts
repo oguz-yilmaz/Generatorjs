@@ -11,9 +11,17 @@ import {
     setText
 } from '@generatorjs'
 import { isDef, isPlainObject, isObject } from '@utils'
+import type { GeneratorDefinitions } from 'types'
 import { create } from '@dom'
 
 class GeneratorJs {
+    // Node > HTMLElement
+    $el: Node | null = null
+    $prevEl: Node | null = null
+    $selected: Node | null = null
+    $fragment: DocumentFragment | null = null
+    $prevFragment: DocumentFragment | null = null
+
     get = get
     reset = reset
     render = render
@@ -25,15 +33,8 @@ class GeneratorJs {
     setContent = setContent
     deleteEvent = deleteEvent
 
-    // Node > HTMLElement
-    $el: Node | null = null
-    $prevEl: Node | null = null
-    $selected: Node | null = null
-    $fragment: DocumentFragment | null = null
-    $prevFragment: DocumentFragment | null = null
-
-    constructor(definitions = {}) {
-        if (!isDef(definitions) || !isPlainObject(definitions)) {
+    constructor(definitions: GeneratorDefinitions) {
+        if (!definitions || !isPlainObject(definitions)) {
             throw new TypeError(
                 `Element passed to constructor must be an object! ${typeof definitions} is given!`
             )

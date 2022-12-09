@@ -62,6 +62,8 @@ export const setHtml = (el, html) => {
         while (el.firstChild) el.removeChild(el.firstChild)
         while (div.firstChild) el.appendChild(div.firstChild)
     }
+
+    return el
 }
 
 export const stringStarts = (str, starts) =>
