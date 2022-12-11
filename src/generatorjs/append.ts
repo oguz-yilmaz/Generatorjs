@@ -20,11 +20,9 @@ export default function append(this: GeneratorJs, nodes) {
         fragmentDiv.appendChild(nodes)
     }
     // if it is GeneratorJs object
-    else if (nodes instanceof GeneratorJs && nodes.$el) {
-        fragmentDiv.appendChild(nodes.$el)
+    else if (nodes instanceof GeneratorJs) {
+        append.call(this, nodes.get())
     }
-
-    this.$el = fragmentDiv
 
     return this
 }

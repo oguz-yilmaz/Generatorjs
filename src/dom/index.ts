@@ -36,7 +36,7 @@ export const create = (
     chain.registerTask(new AttributeProcessor())
     chain.registerTask(new ChildProcessor())
 
-    elem = chain.processChain()
+    elem = chain.processChain()!
 
     if (elem) {
         fragment.appendChild(elem)

@@ -13,6 +13,7 @@
         "semi": ["error", "never"],
         "import/prefer-default-export": 0,
         "class-methods-use-this": 0,
+        "no-return-assign": 0,
         "no-shadow": 0,
         "no-plusplus": 0,
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],

@@ -1,11 +1,7 @@
 import { isString, setHtml } from '@utils'
 import GeneratorJs from '@generator'
 
-export default function setContent(this: GeneratorJs, content, elem) {
-    if (elem !== null) {
-        setHtml(elem, content)
-    }
-
+export default function setContent(this: GeneratorJs, content: string) {
     if (isString(content)) {
         setHtml(this.$selected, content)
     }

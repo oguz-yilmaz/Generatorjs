@@ -1,52 +1,47 @@
 import {
-    render,
     addEvent,
     append,
     attachTo,
     deleteEvent,
-    get,
-    prevState,
     reset,
     setContent,
     setText
 } from '@generatorjs'
-import { isDef, isPlainObject, isObject } from '@utils'
+import { isPlainObject } from '@utils'
 import type { GeneratorDefinitions } from 'types'
 import { create } from '@dom'
 
 class GeneratorJs {
     // Node > HTMLElement
-    $el: Node | null = null
-    $prevEl: Node | null = null
-    $selected: Node | null = null
+    $prevSelected: Node | NodeList | null = null
+    $selected: Node | NodeList | null = null
     $fragment: DocumentFragment | null = null
-    $prevFragment: DocumentFragment | null = null
 
-    get = get
     reset = reset
-    render = render
     append = append
     setText = setText
     attachTo = attachTo
     addEvent = addEvent
-    prevState = prevState
     setContent = setContent
     deleteEvent = deleteEvent
 
     constructor(definitions: GeneratorDefinitions) {
+        // todo verify definitions
         if (!definitions || !isPlainObject(definitions)) {
             throw new TypeError(
                 `Element passed to constructor must be an object! ${typeof definitions} is given!`
             )
         }
 
-        const renderedDom = create(definitions)
+        this.$fragment = create(definitions)
+    }
 
-        if (renderedDom !== null && isObject(renderedDom)) {
-            this.$fragment = renderedDom
+    get(): NodeList | HTMLCollection | null {
+        if (this.$fragment && this.$fragment instanceof DocumentFragment) {
+            return this.$fragment.children
         }
 
-        this.render()
+        return null
     }
 }
 

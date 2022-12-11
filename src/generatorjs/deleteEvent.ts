@@ -2,9 +2,8 @@ import GeneratorJs from '@generator'
 import { stringStarts, isString } from '@utils'
 
 export default function deleteEvent(this: GeneratorJs, event, handler) {
-    const element = this.$selected ? this.$selected : this.$el
-    if (!element) {
-        throw new Error('No element selected.')
+    if (!this.$selected) {
+        throw new Error('No this.$selected selected.')
     }
 
     if (isString(handler) && typeof handler !== 'function') {
@@ -15,14 +14,16 @@ export default function deleteEvent(this: GeneratorJs, event, handler) {
         event = event.substr(2)
     }
 
-    if (element.removeEventListener) {
-        element.removeEventListener(event, handler, false)
-        // @ts-ignore
-    } else if (element.detachEvent) {
-        // @ts-ignore
-        element.detachEvent(`on${event}`, handler)
-    } else {
-        element[`on${event}`] = null
+    if (this.$selected instanceof Node) {
+        if (this.$selected && this.$selected.removeEventListener !== null) {
+            this.$selected.removeEventListener(event, handler, false)
+            // @ts-ignore
+        } else if (this.$selected.detachEvent) {
+            // @ts-ignore
+            this.$selected.detachEvent(`on${event}`, handler)
+        } else {
+            this.$selected[`on${event}`] = null
+        }
     }
 
     return this

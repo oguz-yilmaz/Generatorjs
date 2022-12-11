@@ -2,8 +2,7 @@ import GeneratorJs from '@generator'
 import { stringStarts, isString } from '@utils'
 
 export default function addEvent(this: GeneratorJs, event, handler) {
-    const currentElement = this.$selected ? this.$selected : this.$el
-    if (!currentElement) {
+    if (!this.$selected) {
         throw new Error('No element selected.')
     }
 
@@ -15,12 +14,15 @@ export default function addEvent(this: GeneratorJs, event, handler) {
         handler = window[handler]
     }
 
-    if (currentElement.addEventListener) {
-        currentElement.addEventListener(event, handler, false)
+    // todo proper type check
+    // @ts-ignore
+    if (this.$selected?.addEventListener) {
         // @ts-ignore
-    } else if (currentElement.attachEvent) {
+        this.$selected.addEventListener(event, handler, false)
         // @ts-ignore
-        currentElement.attachEvent(`on${event}`, handler)
+    } else if (this.$selected.attachEvent) {
+        // @ts-ignore
+        this.$selected.attachEvent(`on${event}`, handler)
     } else {
         window[`on${event}`] = handler
     }

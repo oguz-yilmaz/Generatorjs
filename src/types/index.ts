@@ -1,1 +1,1 @@
-export * from './attributes/index'
+export * from './attributes'
