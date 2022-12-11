@@ -73,7 +73,7 @@
         "typescript": "^4.8.4"
     },
     "dependencies": {
-        "@o.yilmaz/taskchain": "^1.0.1",
+        "@o.yilmaz/taskchain": "^1.0.10",
         "core-js": "^3.7.0"
     }
 }
