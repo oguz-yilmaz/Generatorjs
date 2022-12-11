@@ -26,6 +26,16 @@ export const hasOwn = (
         Object.prototype.hasOwnProperty.call(obj, prop)
 )()
 
+export const forEach = (iterable, callback) => {
+    if (Array.isArray(iterable)) {
+        iterable.forEach((key, value) => callback(key, value))
+    }
+
+    if (isPlainObject(iterable)) {
+        Object.entries(iterable).forEach((key, value) => callback(key, value))
+    }
+}
+
 export const isNodeList = (node) => {
     const stringRepr = Object.prototype.toString.call(node)
 
