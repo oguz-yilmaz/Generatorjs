@@ -28,11 +28,13 @@ export const hasOwn = (
 
 export const forEach = (iterable, callback) => {
     if (Array.isArray(iterable)) {
-        iterable.forEach((key, value) => callback(key, value))
+        iterable.forEach((value, key) => callback(key, value))
     }
 
     if (isPlainObject(iterable)) {
-        Object.entries(iterable).forEach((key, value) => callback(key, value))
+        Object.entries(iterable).forEach((value) =>
+            callback(value[0], value[1])
+        )
     }
 }
 
