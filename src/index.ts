@@ -4,8 +4,7 @@ import {
     attachTo,
     deleteEvent,
     reset,
-    setContent,
-    setText
+    setContent
 } from '@generatorjs'
 import { isPlainObject } from '@utils'
 import type { GeneratorDefinitions } from 'types'
@@ -19,7 +18,6 @@ class GeneratorJs {
 
     reset = reset
     append = append
-    setText = setText
     attachTo = attachTo
     addEvent = addEvent
     setContent = setContent

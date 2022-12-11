@@ -264,7 +264,7 @@ The above script will create something like below:
 You can simply add events like folowing:
 
 ```javascript
-    generator.get("#btn").setText("Click Me").addEvent("click",myClickEvent).attachTo(document.body);
+    generator.get("#btn").addEvent("click",myClickEvent).attachTo(document.body);
 
     function myClickEvent(){
         alert("clicked")
