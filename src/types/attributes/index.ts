@@ -3,7 +3,7 @@ export interface AttributesDefinitions {
 }
 
 export interface GeneratorDefinitions {
-    el: string
+    el: keyof HTMLElementTagNameMap
     attrs?: AttributesDefinitions
     inner?: DocumentFragment | Node
     child?: GeneratorDefinitions | GeneratorDefinitions[]
@@ -11,12 +11,6 @@ export interface GeneratorDefinitions {
 
 export interface ProcessorParameters {
     elem: HTMLElement
-    definition: GeneratorDefinitions
+    definitions: GeneratorDefinitions
     create: (definitions: GeneratorDefinitions) => DocumentFragment | null
-}
-
-export enum Attributes {
-    ATTRIBUTES = 'attrs',
-    INNER = 'inner',
-    CHILD = 'child'
 }
