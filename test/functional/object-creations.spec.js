@@ -1,8 +1,8 @@
-import Generatorjs from '@generator'
+import GeneratorJs from '@generator'
 
 test('Creates a single div', () => {
     expect(
-        new Generatorjs({
+        new GeneratorJs({
             el: 'div'
         }).getString()
     ).toBe('<div></div>')

@@ -1,4 +1,4 @@
-# Generatorjs
+# GeneratorJs
 
 Quick and fast way of dynamically creating elements
 
@@ -6,7 +6,7 @@ Quick and fast way of dynamically creating elements
 
 Just download and include the library, and you are good to go :)
 ```javascript
-<script src="/path/to/Generatorjs.js"></script>
+<script src="/path/to/GeneratorJs.js"></script>
 ```
 
 #### Installing via bower
@@ -17,15 +17,15 @@ $ bower install generatorjs
 
 ## Examples
 
-You basically have two way to create DOM elements with Generatorjs
+You basically have two way to create DOM elements with GeneratorJs
 
 *1 with constructor objects
 *2 with constructor strings
 
 ## 1- With constructor objects
 
-This is the preferred way to generate DOM elements via Generatorjs constructor.It allows you to generate
-DOM elements based on the JSON structure passed through Generatorjs constructor.  
+This is the preferred way to generate DOM elements via GeneratorJs constructor.It allows you to generate
+DOM elements based on the JSON structure passed through GeneratorJs constructor.  
 Basically there is 4 main property that you want to use with JSON constructor object.
 
 ##### important notes before we go on:
@@ -39,7 +39,7 @@ As the name implies, this defines/creates the element type.
 Like div, img, anchor tag, p, ul, li ..
 
 ```javascript
-var gen = new Generatorjs({ el:"div" });
+var gen = new GeneratorJs({ el:"div" });
 
 console.log(gen.$el);
 
@@ -53,7 +53,7 @@ The above example will create a div element.Here is visual representation of the
 Or we can create lets say and img element:
 
 ```javascript
-    var gen = new Generatorjs({ el:"img" });
+    var gen = new GeneratorJs({ el:"img" });
 
 ```
 
@@ -70,7 +70,7 @@ This property allows you to define attributes to element to be created.
 Let's see in example:
 
 ```javascript
-    var gen = new Generatorjs(
+    var gen = new GeneratorJs(
             { 
                 el:"div",
                 attr:'id=myDiv,class=myClass' 
@@ -89,7 +89,7 @@ The above example will create a div element with id and class.Here is a visual r
 You can set custom attributes as well.
 
 ```javascript
-    var gen = new Generatorjs(
+    var gen = new GeneratorJs(
             { 
                 el:"div",
                 attr:'id=myDiv,class=myClass,customAttr1=custom1,customAttr2=custom2' 
@@ -107,7 +107,7 @@ You can set custom attributes as well.
 This property allows you to define child elements.Here is how you can set that property:
 
 ```javascript
-    var gen = new Generatorjs(
+    var gen = new GeneratorJs(
             { 
                 el:"div",
                 attr:'id=myDiv',
@@ -133,7 +133,7 @@ The above code snippet will generate something like below:
 You can define multiple child elements, in fact you can define as much child elements as you wish.Also you can define multi-level child elements, they all will be generated recursively.Here is how.
 
 ```javascript
-    var gen = new Generatorjs(
+    var gen = new GeneratorJs(
             { 
                 el:"div",
                 attr:'id=myDiv',
@@ -190,7 +190,7 @@ Finally we ll cover the inner property
 As the name implies this will enable you to set innerHTML of an element.
 
 ```javascript
-    var gen = new Generatorjs(
+    var gen = new GeneratorJs(
             { 
                 el:"div",
                 attr:'id=myDiv',
@@ -225,7 +225,7 @@ But here there is one caveat you should give attention to that is when you defin
 
 -more examples:
 ```javascript
-    var generator = new Generatorjs(
+    var generator = new GeneratorJs(
         {
             el:'div',
             attr:'id=div1,class=cls',
@@ -276,16 +276,16 @@ Then result would be :
 
 ## 1- With constructor strings
 
-This might be the way of generating elements when you want to quickly generate or maybe creating not too complicated elements to be added or appended to other Generatorjs instance that you really want to get it generated eventually.
+This might be the way of generating elements when you want to quickly generate or maybe creating not too complicated elements to be added or appended to other GeneratorJs instance that you really want to get it generated eventually.
 It allows you to create elements with string format like below:
 
 ```javascript
-    var generator = new Generatorjs("div"); //will create a div element , access via .$el
+    var generator = new GeneratorJs("div"); //will create a div element , access via .$el
     var div = generator.$el;
 
     //use .. notation to specify child element
     //and use space to indicate siblings elements
-    var el = new Generatorjs("div..div").$el;
+    var el = new GeneratorJs("div..div").$el;
     //el contains
     /*
     <div>
@@ -293,7 +293,7 @@ It allows you to create elements with string format like below:
     </div>
     */
 
-    el = new Generatorjs("div..div(id=myDiv,class=myClass)").$el;
+    el = new GeneratorJs("div..div(id=myDiv,class=myClass)").$el;
     //el contains
     /*
     <div>
@@ -301,7 +301,7 @@ It allows you to create elements with string format like below:
     </div
     */
 
-    el = new Generatorjs("div..div..div(id=myDiv) div(class=myClass)").$fragment;
+    el = new GeneratorJs("div..div..div(id=myDiv) div(class=myClass)").$fragment;
     //Document Fragment
     /*
     <div>
@@ -312,7 +312,7 @@ It allows you to create elements with string format like below:
     <div></div>
     */
     
-    el = new Generatorjs("div div..div..div(class=test) div(id=myId)..div..div").$fragment;
+    el = new GeneratorJs("div div..div..div(class=test) div(id=myId)..div..div").$fragment;
     /*Document Fragment
     <div></div>
     

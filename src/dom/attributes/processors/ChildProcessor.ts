@@ -15,13 +15,9 @@ export class ChildProcessor extends AbstractTask {
             const fragment: DocumentFragment =
                 window.document.createDocumentFragment()
 
-            try {
-                forEach(child, (k, childDefinition) =>
-                    appendTo(fragment, create(childDefinition))
-                )
-            } catch (e) {
-                debugger
-            }
+            forEach(child, (k, childDefinition) =>
+                appendTo(fragment, create(childDefinition))
+            )
 
             appendTo(elem, fragment.children)
         } else {

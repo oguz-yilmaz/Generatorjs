@@ -6,7 +6,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 
 const pkg = {
-    name: 'Generatorjs',
+    name: 'GeneratorJs',
     format: 'umd'
 }
 

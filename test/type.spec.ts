@@ -1,7 +1,7 @@
-import Generatorjs from '@generator'
+import GeneratorJs from '@generator'
 
 test('Can construct GeneratorJs without error', () => {
-    const gen = new Generatorjs({
+    const gen = new GeneratorJs({
         el: 'div',
         attrs: {
             id: 'test-id',

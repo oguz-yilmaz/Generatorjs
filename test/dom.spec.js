@@ -1,4 +1,4 @@
-import Generatorjs from '@generator'
+import GeneratorJs from '@generator'
 
 const nodeListToArray = (node) => {
     if (Array.isArray(node)) {
@@ -25,46 +25,46 @@ console.log(
 
 // test('object creation tests', function (assert) {
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'div'
 //         }).$el
 //     ).toEqual($('<div></div>').get(0))
 
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'span'
 //         }).$el
 //     ).toEqual($('<span></span>').get(0))
 
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'img'
 //         }).$el
 //     ).toEqual($('<img />').get(0))
 
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'div',
 //             attr: 'id=test'
 //         }).$el
 //     ).toEqual($('<div id="test"></div>').get(0))
 
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'div',
 //             attr: 'id=test,class=cls'
 //         }).$el
 //     ).toEqual($('<div id="test" class="cls"></div>').get(0))
 
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'div',
 //             attr: 'id=test,class=cls,customAttr=custom'
 //         }).$el
 //     ).toEqual($('<div id="test" class="cls" customAttr="custom"></div>').get(0))
 
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'div',
 //             attr: 'id=test,class=cls',
 //             child: [
@@ -79,7 +79,7 @@ console.log(
 //     )
 
 //     expect(
-//         new Generatorjs({
+//         new GeneratorJs({
 //             el: 'div',
 //             attr: 'id=test,class=cls',
 //             child: [
@@ -101,7 +101,7 @@ console.log(
 // })
 
 // test('.reset() tests', (assert) => {
-//     const generator = new Generatorjs({
+//     const generator = new GeneratorJs({
 //         el: 'div',
 //         attr: 'id=div1,class=cls',
 //         child: [
@@ -148,7 +148,7 @@ console.log(
 // })
 
 // test('selecting elements tests', (assert) => {
-//     const generator = new Generatorjs(
+//     const generator = new GeneratorJs(
 //         {
 //             el: 'div',
 //             attr: 'id=div1,class=cls',

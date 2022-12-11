@@ -1,4 +1,4 @@
-import Generatorjs from '@generator'
+import GeneratorJs from '@generator'
 import { screen } from '@testing-library/dom'
 
 test('appends ul to a single div', () => {
@@ -8,7 +8,7 @@ test('appends ul to a single div', () => {
         </div>
     `
 
-    const gen = new Generatorjs({
+    const gen = new GeneratorJs({
         el: 'div'
     })
 
@@ -25,7 +25,7 @@ test('appends div to a single div with innerText', () => {
         </div>
     `
 
-    const gen = new Generatorjs({
+    const gen = new GeneratorJs({
         el: 'div',
         inner: 'Example'
     })
