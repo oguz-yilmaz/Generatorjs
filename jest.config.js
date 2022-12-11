@@ -1,5 +1,6 @@
 module.exports = {
     preset: 'ts-jest/presets/js-with-ts',
+    moduleFileExtensions: ['js', 'json', 'ts'],
     clearMocks: true,
     setupFilesAfterEnv: ['./test/jest.setup.ts'],
     testEnvironment: 'jest-environment-jsdom',
@@ -15,5 +16,5 @@ module.exports = {
     },
     collectCoverage: true,
     coverageReporters: ['html'],
-    moduleDirectories: ['node_modules']
+    moduleDirectories: ['node_modules', 'src']
 }
