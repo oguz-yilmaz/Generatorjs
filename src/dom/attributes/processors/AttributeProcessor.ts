@@ -2,7 +2,7 @@ import { AbstractTask } from '@o.yilmaz/taskchain'
 import type { ProcessorParameters } from 'types/attributes'
 import { forEach } from '@utils'
 
-class AttributeProcessor extends AbstractTask {
+export class AttributeProcessor extends AbstractTask {
     shouldRun({ definitions }: ProcessorParameters) {
         return !!definitions?.attrs
     }
@@ -17,5 +17,3 @@ class AttributeProcessor extends AbstractTask {
         return elem
     }
 }
-
-export const attributeProcessor = new AttributeProcessor()

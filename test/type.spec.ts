@@ -1,6 +1,6 @@
 import Generatorjs from '@generator'
 
-test('Can construct without type error', () => {
+test('Can construct GeneratorJs without error', () => {
     const gen = new Generatorjs({
         el: 'div',
         attrs: {
@@ -21,5 +21,5 @@ test('Can construct without type error', () => {
                 }
             }
         ]
-    }) // throws JavaScript heap out of memory
+    })
 })

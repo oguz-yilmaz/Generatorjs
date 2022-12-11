@@ -1,7 +1,7 @@
 import { TaskChain } from '@o.yilmaz/taskchain'
-import { innerProcessor } from '@dom/attributes/processors/InnerProcessor'
-import { attributeProcessor } from '@dom/attributes/processors/AttributeProcessor'
-import { childProcessor } from '@dom/attributes/processors/ChildProcessor'
+import { InnerProcessor } from '@dom/attributes/processors/InnerProcessor'
+import { AttributeProcessor } from '@dom/attributes/processors/AttributeProcessor'
+import { ChildProcessor } from '@dom/attributes/processors/ChildProcessor'
 import type { GeneratorDefinitions } from 'types'
 import { createElement } from './utils'
 
@@ -32,9 +32,9 @@ export const create = (
         elem
     })
 
-    chain.registerTask(innerProcessor)
-    chain.registerTask(attributeProcessor)
-    chain.registerTask(childProcessor)
+    chain.registerTask(new InnerProcessor())
+    chain.registerTask(new AttributeProcessor())
+    chain.registerTask(new ChildProcessor())
 
     elem = chain.processChain()
 

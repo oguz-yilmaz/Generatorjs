@@ -2,7 +2,7 @@ import { AbstractTask } from '@o.yilmaz/taskchain'
 import type { ProcessorParameters } from 'types/attributes'
 import { setHtml } from '@utils'
 
-class InnerProcessor extends AbstractTask {
+export class InnerProcessor extends AbstractTask {
     shouldRun({ definitions }: ProcessorParameters) {
         return !!definitions?.inner
     }
@@ -15,5 +15,3 @@ class InnerProcessor extends AbstractTask {
         return setHtml(elem, inner)
     }
 }
-
-export const innerProcessor = new InnerProcessor()
