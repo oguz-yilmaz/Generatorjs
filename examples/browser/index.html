@@ -5,50 +5,42 @@
     <title>HTML GENERATOR</title>
 </head>
 <body>
-<script src="../../dist/Generator.js"></script>
+<script src="../../dist/Generator.min.js"></script>
 
 <script>
-    var generator = new Generatorjs(
-        {
-            el:'div',
-            attr:'id=div1,class=cls',
-            child:[
-                {
-                    el:'div',
-                    attr:'id=div2,class=c',
-                    child:[
-                        {
-                            el:'button',
-                            attr:'value=click,id=btn'
-                        }
-                    ]
-                },
-                {
-                    el:'div',
-                    attr:'id=div4,name=test,class=c'
+    var generator = new GeneratorJs({
+        el: 'div',
+        attrs: {
+            id: 'test-id',
+            name: 'test-name'
+        },
+        child: [
+            {
+                el: 'span',
+                attrs: {
+                    name: 'span1'
                 }
-            ]
-        }
-    );
+            },
+            {
+                el: 'span',
+                attrs: {
+                    name: 'span2'
+                }
+            }
+        ]
+    });
 
     generator
         .get("#btn")
         .setText("Click Me")
-        .addEvent("click",myClickEvent)
+        .addEvent("click", myClickEvent)
         .attachTo(document.body);
 
     function myClickEvent(){
         alert("clicked")
     }
 
-    var gen = new Generatorjs({
-      el: 'div',
-      inner: '<div>Visible</div>'
-    });
-
-    gen.append(document.createElement("ul"));
-
-    console.log(gen.$el);
+    console.log(generator.$el);
 </script>
 </body>
 </html>

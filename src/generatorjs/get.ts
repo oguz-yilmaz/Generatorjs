@@ -4,8 +4,6 @@ import { stringStarts, isString } from '@utils'
 import { createElement } from '@dom/utils'
 import selectElement from './selectElement'
 
-// It's forbidden in JS to have a parameter name as `this` so
-// TS uses this to defined explicitly the value of this for a function.
 export default function get(this: GeneratorJs, ...args) {
     if (!this.$fragment) {
         return null
