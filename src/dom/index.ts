@@ -23,31 +23,23 @@ export const create = (
      * @param DocumentFragment fragment
      */
     const fragment = window.document.createDocumentFragment()
-    const defs =
-        definitions && !Array.isArray(definitions) ? [definitions] : definitions
 
-    for (let i = 0; i < defs.length; i = +1) {
-        const currentDefinition = defs[i]
+    let elem = createElement(definitions.el)
 
-        let elem = currentDefinition?.el
-            ? createElement(currentDefinition.el)
-            : null
+    const chain = new TaskChain({
+        definitions,
+        create,
+        elem
+    })
 
-        const chain = new TaskChain({
-            definition: currentDefinition,
-            create,
-            elem
-        })
+    chain.registerTask(innerProcessor)
+    chain.registerTask(attributeProcessor)
+    chain.registerTask(childProcessor)
 
-        chain.registerTask(innerProcessor)
-        chain.registerTask(attributeProcessor)
-        chain.registerTask(childProcessor)
+    elem = chain.processChain()
 
-        const elem = chain.processChain()
-
-        if (elem) {
-            fragment.appendChild(elem)
-        }
+    if (elem) {
+        fragment.appendChild(elem)
     }
 
     return fragment

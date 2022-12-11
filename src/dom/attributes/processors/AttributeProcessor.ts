@@ -1,15 +1,16 @@
 import { AbstractTask } from '@o.yilmaz/taskchain'
 import type { ProcessorParameters } from 'types/attributes'
+import { forEach } from '@utils'
 
 class AttributeProcessor extends AbstractTask {
-    shouldRun({ definition }: ProcessorParameters) {
-        return !!definition?.attrs
+    shouldRun({ definitions }: ProcessorParameters) {
+        return !!definitions?.attrs
     }
 
-    run({ elem, definition }: ProcessorParameters) {
-        const { attrs } = definition
+    run({ elem, definitions }: ProcessorParameters) {
+        const { attrs } = definitions
 
-        ;(attrs || []).forEach((attr, value) => {
+        forEach(attrs || [], (attr, value) => {
             elem.setAttribute(attr, value)
         })
 
