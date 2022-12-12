@@ -14,6 +14,10 @@ export const isString = (value) => {
     return Object.prototype.toString.call(value) === '[object String]'
 }
 
+export const isFunction = (value) =>
+    Object.prototype.toString.call(value) === '[object Function]' ||
+    typeof value === 'function'
+
 export const isDef = (v) => v !== undefined && v !== null
 
 export const isObject = (value) => Object(value) === value
