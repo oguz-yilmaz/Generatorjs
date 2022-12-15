@@ -1,4 +1,4 @@
-import GeneratorJs from '@generator'
+import { GeneratorJs } from '@generator'
 import { createElement } from '@dom/utils'
 import { isNodeList, isDef } from '@utils'
 
@@ -21,7 +21,7 @@ export default function append(this: GeneratorJs, nodes) {
     }
     // if it is GeneratorJs object
     else if (nodes instanceof GeneratorJs) {
-        append.call(this, nodes.get())
+        append.call(this, nodes.getHtml())
     }
 
     return this
