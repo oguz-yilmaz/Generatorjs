@@ -1,7 +1,7 @@
-import GeneratorJs from '@generator'
+import Generator, { GeneratorJs } from '@generator'
 
 test('Can construct GeneratorJs without error', () => {
-    const gen = new GeneratorJs({
+    const gen = Generator({
         el: 'div',
         attrs: {
             id: 'test-id',
@@ -22,4 +22,10 @@ test('Can construct GeneratorJs without error', () => {
             }
         ]
     })
+
+    const fragment = gen.getFragment()
+    const html = gen.reset()
+
+    expect(html).toBeInstanceOf(GeneratorJs)
+    expect(fragment).toBeInstanceOf(DocumentFragment)
 })
