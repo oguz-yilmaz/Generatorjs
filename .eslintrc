@@ -16,7 +16,7 @@
         "no-return-assign": 0,
         "no-shadow": 0,
         "no-plusplus": 0,
-        "prefer-rest-params": ["warn"],
+        "prefer-rest-params": 0,
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "import/extensions": [
             "error",
