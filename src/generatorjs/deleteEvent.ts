@@ -1,4 +1,4 @@
-import { GeneratorJs } from '@generator'
+import { GeneratorJs } from '@generatorjs'
 import { stringStarts, isString } from '@utils'
 
 export default function deleteEvent(this: GeneratorJs, event, handler) {

@@ -1,4 +1,4 @@
-import { GeneratorJs } from '@generator'
+import { GeneratorJs } from '@generatorjs'
 import { createElement } from '@dom/utils'
 import { isNodeList, isDef } from '@utils'
 

@@ -1,4 +1,4 @@
-import { GeneratorJs } from '@generator'
+import { GeneratorJs } from '@generatorjs'
 import { isDef } from '@utils'
 
 // must provide element object

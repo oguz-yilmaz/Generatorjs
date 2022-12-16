@@ -1,5 +1,5 @@
 import { isDef, isString } from '@utils'
-import { GeneratorJs } from '@generator'
+import { GeneratorJs } from '@generatorjs'
 
 const selectQuery = (fragment: DocumentFragment | null, selector: string) => {
     if (!isDef(selector) || !isString(selector)) {
