@@ -8,7 +8,7 @@
 <script src="../../dist/Generator.min.js"></script>
 
 <script>
-    var generator = new GeneratorJs({
+    const gen = GeneratorJs({
         el: 'div',
         attrs: {
             id: 'test-id',
@@ -25,22 +25,23 @@
                 el: 'span',
                 attrs: {
                     name: 'span2'
-                }
+                },
+                child: [
+                    {
+                        el: 'img',
+                        attrs: {
+                            alt: 'Test image',
+                            src: '../images/generatorjs.png'
+                        }
+                    }
+                ]
             }
         ]
-    });
+    })
 
-    generator
-        .get("#btn")
-        .setText("Click Me")
-        .addEvent("click", myClickEvent)
-        .attachTo(document.body);
+    const fragment = gen.getFragment()
 
-    function myClickEvent(){
-        alert("clicked")
-    }
-
-    console.log(generator.$el);
+    document.body.appendChild(fragment)
 </script>
 </body>
 </html>
