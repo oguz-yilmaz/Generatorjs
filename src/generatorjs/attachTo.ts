@@ -1,20 +1,13 @@
 import { GeneratorJs } from '@generatorjs'
-import { isDef } from '@utils'
+import { appendTo } from '@dom/utils'
 
-// must provide element object
 export default function attachTo(this: GeneratorJs, element) {
-    if (!this.$selected) {
-        throw new Error('No elements Generatorjs object has to be attached!')
-    }
-
-    // if it is html element
-    if (isDef(element.nodeType) && element.nodeType > 0) {
-        element.insertBefore(this.$selected, element.firstChild)
-    } else {
+    if (!this.$fragment) {
         throw new Error(
-            'Elements to be attached must be of either type Element Object'
+            'No elements created. Make sure you have proper definitions.'
         )
     }
 
+    appendTo(element, this.$selected ?? this.$fragment)
     return this
 }
