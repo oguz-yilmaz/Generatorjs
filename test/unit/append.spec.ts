@@ -1,36 +1,19 @@
 import GeneratorJs from '@generator'
-import { screen } from '@testing-library/dom'
+import $ from 'jquery'
 
+/**
+ * @see {@link https://github.com/testing-library/jest-dom#tocontainelement}
+ */
 test('appends ul to a single div', () => {
-    const expected = `
-        <div>
-           <ul></ul>
-        </div>
-    `
-
-    const gen = new GeneratorJs({
-        el: 'div'
-    })
-
-    gen.append(document.createElement('ul'))
-
-    expect(gen.$el).toContainHTML(''.stripSpaces(expected))
-})
-
-test('appends div to a single div with innerText', () => {
-    const expected = `
-        <div>
-            Example
-            <div></div>
-        </div>
-    `
-
-    const gen = new GeneratorJs({
+    const gen = GeneratorJs({
         el: 'div',
-        inner: 'Example'
+        inner: 'Test div'
     })
 
-    gen.append(document.createElement('div'))
+    const ul = $(`<ul>This is a test ul</ul>`).get(0)!
 
-    expect(gen.$el).toContainHTML(''.stripSpaces(expected))
+    gen.append(ul)
+
+    expect(gen.getFragment().lastElementChild).toContainElement(ul)
+    expect(gen.getText()).toBe('Test divThis is a test ul')
 })
