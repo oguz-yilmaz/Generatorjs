@@ -1,7 +1,7 @@
 import { GeneratorJs } from '@generatorjs'
 import { stringStarts, isString } from '@utils'
 
-export default function addEvent(this: GeneratorJs, event, handler) {
+export default function addEvent(this: GeneratorJs, event: string, handler) {
     if (!this.$selected) {
         throw new Error('No element selected.')
     }
@@ -14,13 +14,10 @@ export default function addEvent(this: GeneratorJs, event, handler) {
         handler = window[handler]
     }
 
-    // todo proper type check
-    // @ts-ignore
-    if (this.$selected?.addEventListener) {
-        // @ts-ignore
+    if ('addEventListener' in this.$selected) {
         this.$selected.addEventListener(event, handler, false)
-        // @ts-ignore
-    } else if (this.$selected.attachEvent) {
+    } else if ('attachEvent' in this.$selected) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         this.$selected.attachEvent(`on${event}`, handler)
     } else {
