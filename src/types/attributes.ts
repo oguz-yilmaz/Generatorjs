@@ -5,7 +5,7 @@ export interface AttributesDefinitions {
 export interface GeneratorDefinitions {
     el: keyof HTMLElementTagNameMap
     attrs?: AttributesDefinitions
-    inner?: DocumentFragment | Node
+    inner?: DocumentFragment | Node | HTMLElement | string
     child?: GeneratorDefinitions | GeneratorDefinitions[]
 }
 

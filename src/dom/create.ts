@@ -12,8 +12,6 @@ export const create = (
         throw new Error('No definition specified')
     }
 
-    const fragment = window.document.createDocumentFragment()
-
     const elem = createElement(definitions.el)
 
     const chain = new TaskChain({
@@ -28,9 +26,8 @@ export const create = (
         .registerTask(new ChildProcessor())
         .processChain()
 
-    if (elem) {
-        appendTo(fragment, elem)
-    }
+    const fragment = window.document.createDocumentFragment()
+    appendTo(fragment, elem)
 
     return fragment
 }
