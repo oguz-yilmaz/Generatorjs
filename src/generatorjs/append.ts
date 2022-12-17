@@ -21,7 +21,7 @@ export default function append(this: GeneratorJs, nodes) {
     }
     // if it is GeneratorJs object
     else if (nodes instanceof GeneratorJs) {
-        append.call(this, nodes.getHtml())
+        append.call(this, nodes.getFragment())
     }
 
     return this

@@ -1,7 +1,8 @@
 import Generator from '@generator'
+import { GeneratorJs } from '@generatorjs'
 
 test('Can construct GeneratorJs without error', () => {
-    const gen = Generator({
+    Generator({
         el: 'div',
         attrs: {
             id: 'test-id',
@@ -19,6 +20,7 @@ test('Can construct GeneratorJs without error', () => {
                 attrs: {
                     name: 'span2'
                 },
+                inner: 'This is a test span',
                 child: [
                     {
                         el: 'img',
@@ -30,13 +32,4 @@ test('Can construct GeneratorJs without error', () => {
             }
         ]
     })
-
-    debugger
-
-    const fragment = gen.getFragment()
-    const text = gen.getText()
-
-    console.log('Text => ', text, gen.getHtml())
-    // expect(res).toBeInstanceOf(GeneratorJs)
-    expect(fragment).toBeInstanceOf(DocumentFragment)
 })

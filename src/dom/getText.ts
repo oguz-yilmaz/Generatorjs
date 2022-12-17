@@ -1,8 +1,6 @@
 import { GeneratorJs } from '@generatorjs'
 import { isNode } from '@dom/utils'
 
-enum Nodes {}
-
 function getTextElem(elem) {
     if (!elem) {
         return ''
@@ -13,26 +11,26 @@ function getTextElem(elem) {
     let i = 0
 
     if (!isNode(elem)) {
-        // this is an array if it is not a Node
         // eslint-disable-next-line no-cond-assign
         while ((node = elem[i++])) {
-            // Do not traverse comment nodes
             ret += getTextElem(node)
         }
     } else if (
-        elem.nodeType === 1 ||
-        elem.nodeType === 9 ||
-        elem.nodeType === 11
+        elem.nodeType === Node.ELEMENT_NODE ||
+        elem.nodeType === Node.DOCUMENT_NODE ||
+        elem.nodeType === Node.DOCUMENT_FRAGMENT_NODE
     ) {
-        if (elem.textContent) {
+        if (typeof elem.textContent === 'string') {
             return elem.textContent
         }
 
-        // Traverse its children
         for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
             ret += getTextElem(elem)
         }
-    } else if (elem.nodeType === 3 || elem.nodeType === 4) {
+    } else if (
+        elem.nodeType === Node.TEXT_NODE ||
+        elem.nodeType === Node.CDATA_SECTION_NODE
+    ) {
         return elem.nodeValue
     }
 
@@ -40,7 +38,7 @@ function getTextElem(elem) {
 }
 
 export function getText(this: GeneratorJs) {
-    const html = this.getHtml()
+    const fragment = this.getFragment()
 
-    return getTextElem(html)
+    return getTextElem(fragment)
 }
