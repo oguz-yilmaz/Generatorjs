@@ -44,10 +44,4 @@ export class GeneratorJs {
 
         return null
     }
-
-    getHtml(): HTMLCollection | Node | null {
-        const fragment = this.getFragment()
-
-        return fragment ? fragment.children : null
-    }
 }
