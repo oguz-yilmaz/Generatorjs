@@ -2,7 +2,7 @@ import { GeneratorJs } from '@generatorjs'
 import { stringStarts, isString } from '@utils'
 
 export default function deleteEvent(this: GeneratorJs, event, handler) {
-    if (!this.$selected) {
+    if (!this.$selected || !(this.$selected instanceof Node)) {
         throw new Error('No this.$selected selected.')
     }
 
@@ -14,16 +14,14 @@ export default function deleteEvent(this: GeneratorJs, event, handler) {
         event = event.substr(2)
     }
 
-    if (this.$selected instanceof Node) {
-        if (this.$selected && this.$selected.removeEventListener !== null) {
-            this.$selected.removeEventListener(event, handler, false)
-            // @ts-ignore
-        } else if (this.$selected.detachEvent) {
-            // @ts-ignore
-            this.$selected.detachEvent(`on${event}`, handler)
-        } else {
-            this.$selected[`on${event}`] = null
-        }
+    if (this.$selected.removeEventListener !== null) {
+        this.$selected.removeEventListener(event, handler, false)
+    } else if ('attachEvent' in this.$selected) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        this.$selected.detachEvent(`on${event}`, handler)
+    } else {
+        this.$selected[`on${event}`] = null
     }
 
     return this
