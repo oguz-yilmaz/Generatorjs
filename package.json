@@ -78,5 +78,8 @@
     "dependencies": {
         "@o.yilmaz/taskchain": "^1.0.10",
         "core-js": "^3.7.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
