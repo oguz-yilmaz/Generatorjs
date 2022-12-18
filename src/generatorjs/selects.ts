@@ -1,7 +1,10 @@
 import { isDef, isString } from '@utils'
 import { GeneratorJs } from '@generatorjs'
 
-const selectQuery = (fragment: DocumentFragment | null, selector: string) => {
+const assertSelector = (
+    fragment: DocumentFragment | null,
+    selector: string
+) => {
     if (!isDef(selector) || !isString(selector)) {
         throw new Error('Specify selector string!')
     }
@@ -13,17 +16,18 @@ const selectQuery = (fragment: DocumentFragment | null, selector: string) => {
     }
 }
 
-export function select(this: GeneratorJs, selector: string): Node | null {
-    selectQuery(this.$fragment, selector)
+export function select(this: GeneratorJs, selector: string): GeneratorJs {
+    assertSelector(this.$fragment, selector)
 
-    return (this.$selected = this.$fragment!.querySelector(selector))
+    this.$selected = this.$fragment!.querySelector(selector)
+
+    return this
 }
 
-export function selectAll(
-    this: GeneratorJs,
-    selector: string
-): NodeList | null {
-    selectQuery(this.$fragment, selector)
+export function selectAll(this: GeneratorJs, selector: string): GeneratorJs {
+    assertSelector(this.$fragment, selector)
 
-    return (this.$selected = this.$fragment!.querySelectorAll(selector))
+    this.$selected = this.$fragment!.querySelectorAll(selector)
+
+    return this
 }

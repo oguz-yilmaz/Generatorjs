@@ -37,6 +37,10 @@ export class GeneratorJs {
         this.$fragment = create(definitions)
     }
 
+    getSelected() {
+        return this.$selected
+    }
+
     getFragment(): DocumentFragment | null {
         if (this.$fragment && this.$fragment instanceof DocumentFragment) {
             return this.$fragment
