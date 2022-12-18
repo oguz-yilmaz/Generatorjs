@@ -1,9 +1,9 @@
 import Generator from '@generator'
 
 test('Creates a single div', () => {
-    expect(
-        Generator({
-            el: 'div'
-        })
-    ).toBe('<div></div>')
+    const gen = Generator({
+        el: 'div'
+    })
+
+    expect(gen.getFragment()!.firstElementChild).toBeInstanceOf(HTMLDivElement)
 })
