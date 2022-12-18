@@ -7,8 +7,6 @@ export class InnerProcessor extends AbstractTask {
         return !!definitions?.inner
     }
 
-    // @todo with inner attribute we directly replace the innerHTML with another
-    // DOM Element | GeneratorJs object | NodeList
     run({ elem, definitions }: ProcessorParameters) {
         const { inner } = definitions
 
