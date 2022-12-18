@@ -5,10 +5,18 @@ export default function append(
     this: GeneratorJs,
     nodes: NodeList | Node | GeneratorJs
 ) {
+    const elem = this.$selected ?? this.$fragment
+
+    if (!elem) {
+        throw new Error(
+            'No element found to be appended. Check your definitions or select an element to append to.'
+        )
+    }
+
     if (nodes instanceof GeneratorJs) {
-        appendTo(this.$fragment, nodes.getFragment())
+        appendTo(elem, nodes.getFragment())
     } else {
-        appendTo(this.$fragment, nodes)
+        appendTo(elem, nodes)
     }
 
     return this

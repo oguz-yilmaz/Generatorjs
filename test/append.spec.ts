@@ -14,6 +14,28 @@ test('appends ul to a single div', () => {
 
     gen.append(ul)
 
-    expect(gen.getFragment().lastElementChild).toContainElement(ul)
+    expect(gen.getFragment()!.lastElementChild).toContainElement(ul)
     expect(gen.getText()).toBe('Test divThis is a test ul')
+})
+
+test('appends span to a selected nested div', () => {
+    const gen = GeneratorJs({
+        el: 'div',
+        child: [
+            {
+                el: 'div',
+                attrs: {
+                    class: 'innerDiv'
+                },
+                inner: 'Inner div text'
+            }
+        ]
+    })
+
+    const span = $(`<span>This span element</span>`).get(0)!
+
+    gen.select('.innerDiv').append(span)
+
+    expect(gen.getSelected()).toContainElement(span)
+    expect(gen.getText()).toBe('Inner div textThis span element')
 })
