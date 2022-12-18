@@ -20,7 +20,8 @@
         "lint": "npx eslint -c .eslintrc --ignore-path .eslintignore --ext .js,.ts,.tsx .",
         "lint-fix": "npm run lint-check -- --fix",
         "validate": "npm-run-all --parallel check-types check-format lint build",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "lint-staged": "lint-staged"
     },
     "repository": {
         "type": "git",
@@ -35,7 +36,7 @@
         "dynamic"
     ],
     "author": "Oguz Yilmaz <oguz.yilmaz@yahoo.com>",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/oguz-yilmaz/Generatorjs/issues"
     },
@@ -65,7 +66,7 @@
         "jest": "^29.3.1",
         "jest-environment-jsdom": "^29.3.1",
         "jquery": "^3.6.2",
-        "lint-staged": "^13.0.3",
+        "lint-staged": "^13.1.0",
         "npm-run-all": "^4.1.5",
         "prettier": "^2.7.1",
         "rollup": "^2.33.3",
