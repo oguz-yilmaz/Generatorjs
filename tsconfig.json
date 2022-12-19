@@ -1,29 +1,8 @@
 {
+    "extends": "./tsconfig-base.json",
     "compilerOptions": {
-        "lib": ["dom"],
-        "target": "es2022",
-        "module": "es2022",
-        "moduleResolution": "Node",
-        "baseUrl": ".",
-        "rootDir": ".",
-        "paths": {
-            "@generatorjs": ["./src/generatorjs/index"],
-            "@generator": ["./src/index"],
-            "@test/*": ["./test/*"],
-            "@utils": ["./src/utils"],
-            "@dom": ["./src/dom/index.ts"],
-            "@dom/*": ["./src/dom/*"],
-            "types": ["./src/types/index.ts"],
-            "types/*": ["./src/types/*"],
-            "@constants": ["./src/constants"]
-        },
-        "allowJs": true,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        // remove this after transition
-        "noImplicitAny": false,
-        "skipLibCheck": true
+        "module": "esnext",
+        "outDir": "out/mjs",
+        "target": "esnext"
     }
 }

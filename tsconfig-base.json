@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "lib": ["dom"],
+        "moduleResolution": "Node",
+        // Lets you set a base directory to resolve non-absolute module names.
+        // use if you are tired using '../' or './'
+        "baseUrl": ".",
+        "rootDir": "src",
+        "paths": {
+            "@generatorjs": ["./src/generatorjs/index"],
+            "@generator": ["./src/index"],
+            "@test/*": ["./test/*"],
+            "@utils": ["./src/utils"],
+            "@dom": ["./src/dom/index.ts"],
+            "@dom/*": ["./src/dom/*"],
+            "types": ["./src/types/index.ts"],
+            "types/*": ["./src/types/*"],
+            "@constants": ["./src/constants"]
+        },
+        "allowJs": true,
+        // "noEmit": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        // remove this after transition
+        "noImplicitAny": false,
+        "skipLibCheck": true,
+        "types": ["node", "jest"]
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["src"]
+}

@@ -2,7 +2,14 @@
     "name": "generatorjs",
     "version": "1.0.1",
     "description": "Allows you to create  and manipulate DOM elements seamlessly in a declarative way.",
-    "main": "dist/Generatorjs.js",
+    "main": "out/cjs/index.js",
+    "module": "out/mjs/index.js",
+    "exports": {
+        ".": {
+            "import": "./out/mjs/index.js",
+            "require": "./out/cjs/index.js"
+        }
+    },
     "directories": {
         "example": "examples",
         "tests": "tests"
@@ -12,7 +19,7 @@
         "test": "jest",
         "test:watch": "jest --watch",
         "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
-        "build": "rollup --config",
+        "build": "rm -fr dist/* out/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ./scripts/update-package-types.sh && rollup --config",
         "check-types": "tsc",
         "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|js|json)\"",
         "format": "npm run prettier -- --write",
