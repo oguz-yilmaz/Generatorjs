@@ -12,7 +12,6 @@ import { select, selectAll } from './selects'
 
 export class GeneratorJs {
     // Node > HTMLElement
-    $prevSelected: Node | NodeList | null = null
     $selected: Node | NodeList | null = null
     $fragment: DocumentFragment | null = null
 
@@ -35,6 +34,18 @@ export class GeneratorJs {
         }
 
         this.$fragment = create(definitions)
+    }
+
+    get $el(): Node | HTMLElement | null {
+        if (this.$selected instanceof Node) {
+            return this.$selected
+        }
+
+        if (this.$fragment) {
+            return this.$fragment.firstElementChild
+        }
+
+        return null
     }
 
     getSelected() {
