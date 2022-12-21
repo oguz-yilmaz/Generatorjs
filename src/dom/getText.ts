@@ -38,7 +38,5 @@ function getTextElem(elem) {
 }
 
 export function getText(this: GeneratorJs) {
-    const fragment = this.getFragment()
-
-    return getTextElem(fragment)
+    return getTextElem(this.$selected ?? this.getFragment())
 }

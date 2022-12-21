@@ -1,6 +1,6 @@
 import { AbstractTask } from '@o.yilmaz/taskchain'
 import type { ProcessorParameters } from 'types/attributes'
-import { emptyArray, forEach } from '@utils'
+import { emptyArray, forEach, isString, setHtml } from '@utils'
 import { appendTo, isNode } from '@dom/utils'
 
 export class ChildProcessor extends AbstractTask {
@@ -20,7 +20,9 @@ export class ChildProcessor extends AbstractTask {
 
         const { child } = definitions
 
-        if (Array.isArray(child) && !emptyArray(child)) {
+        if (!Array.isArray(child) && !isString(child) && child?.el) {
+            appendTo(elem, create(child))
+        } else if (Array.isArray(child) && !emptyArray(child)) {
             const fragment: DocumentFragment =
                 window.document.createDocumentFragment()
 
@@ -31,10 +33,8 @@ export class ChildProcessor extends AbstractTask {
             })
 
             appendTo(elem, fragment)
-        } else {
-            throw new TypeError(
-                'Child prop should contain array of Generator object.'
-            )
+        } else if (isString(child)) {
+            setHtml(elem, child)
         }
 
         return elem

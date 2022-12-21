@@ -6,7 +6,7 @@ export interface GeneratorDefinitions {
     el: keyof HTMLElementTagNameMap
     attrs?: AttributesDefinitions
     inner?: DocumentFragment | Node | HTMLElement | string
-    child?: GeneratorDefinitions | GeneratorDefinitions[]
+    child?: string | GeneratorDefinitions | GeneratorDefinitions[]
 }
 
 export interface ProcessorParameters {
