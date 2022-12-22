@@ -1,21 +1,21 @@
 {
     "compilerOptions": {
         "lib": ["dom"],
-        "moduleResolution": "Node",
+        "moduleResolution": "NodeNext",
         // Lets you set a base directory to resolve non-absolute module names.
-        // use if you are tired using '../' or './'
+        // use if you are tired using '../../' if your modules nested deep
         "baseUrl": ".",
         "rootDir": "src",
         "paths": {
-            "@generatorjs": ["./src/generatorjs/index"],
-            "@generator": ["./src/index"],
+            "@generatorjs": ["./src/generatorjs/index.js"],
+            "@generator": ["./src/index.js"],
             "@test/*": ["./test/*"],
             "@utils": ["./src/utils"],
-            "@dom": ["./src/dom/index.ts"],
+            "@dom": ["./src/dom/index.js"],
             "@dom/*": ["./src/dom/*"],
-            "types": ["./src/types/index.ts"],
+            "types": ["./src/types/index.js"],
             "types/*": ["./src/types/*"],
-            "@constants": ["./src/constants"]
+            "@constants": ["./src/constants.js"]
         },
         "allowJs": true,
         // "noEmit": true,
@@ -28,5 +28,9 @@
         "types": ["node", "jest"]
     },
     "exclude": ["node_modules", "dist"],
-    "include": ["src"]
+    "include": ["src"],
+    "tsc-alias": {
+        // fixes adding .js extension for es6 modules
+        "resolveFullPaths": true
+    }
 }
