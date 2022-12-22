@@ -32,3 +32,35 @@ test('Child props can be an object defining single element', () => {
     expect(selected.$el).toBeInstanceOf(HTMLSpanElement)
     expect(selectedText).toBe('Another div')
 })
+
+test('Child props sets inner text when nested array', () => {
+    const gen = Generator({
+        el: 'div',
+        inner: 'Root',
+        child: [
+            {
+                el: 'span',
+                inner: 'Child1',
+                child: {
+                    el: 'span',
+                    attrs: {
+                        id: 'inner-child'
+                    },
+                    child: 'Child2'
+                }
+            },
+            {
+                el: 'span',
+                child: 'Child3'
+            }
+        ]
+    })
+
+    const div = gen.$el
+
+    expect(div).toBeInstanceOf(HTMLDivElement)
+    expect(gen.select('#inner-child').$el).toBeInstanceOf(HTMLSpanElement)
+    // reset after selecting
+    gen.reset()
+    expect(gen.getText()).toBe('RootChild1Child2Child3')
+})
