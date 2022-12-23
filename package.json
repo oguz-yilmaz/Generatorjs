@@ -10,6 +10,11 @@
             "require": "./out/cjs/index.js"
         }
     },
+    "files": [
+        "out",
+        "README.md",
+        "LICENSE.md"
+    ],
     "directories": {
         "example": "examples",
         "tests": "tests"
