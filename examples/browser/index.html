@@ -11,35 +11,36 @@
     const gen = GeneratorJs({
         el: 'div',
         attrs: {
-            id: 'test-id',
-            name: 'test-name'
+            class: 'container md-5'
         },
         child: [
             {
                 el: 'span',
-                child: 'Child text span'
+                attrs: {
+                    class: 'test-class'
+                }
             },
             {
                 el: 'span',
-                attrs: {
-                    name: 'span2'
-                },
-                child: [
-                    {
-                        el: 'img',
-                        attrs: {
-                            alt: 'Test image',
-                            src: '../images/generatorjs.png'
-                        }
-                    }
-                ],
-                inner: 'This is a test span',
+                child: 'A span element with this text'
+            },
+            {
+                el: 'div',
+                inner: 'Div with single child element',
+                child: {
+                    el: 'button',
+                    inner: 'Click me'
+                }
             }
         ]
     })
 
-    const fragment = gen.getFragment()
-    document.body.appendChild(fragment)
+    const gen2 = GeneratorJs({
+        el: 'div',
+        inner: document.createElement('span')
+    })
+
+    gen2.attachTo(document.body)
 </script>
 </body>
 </html>
