@@ -5,6 +5,8 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 
+const extensions = ['.js', '.ts']
+
 const pkg = {
     name: 'GeneratorJs',
     format: 'umd'
@@ -31,8 +33,12 @@ export default {
         json(), // converts .json files to ES6 modules.
         resolve(),
         commonjs(),
-        typescript(excludeFiles),
-        babel(excludeFiles)
+        typescript(),
+        babel({
+            extensions,
+            babelHelpers: 'bundled',
+            include: ['src/**/*']
+        })
     ],
     context: 'window'
 }

@@ -9,14 +9,8 @@ module.exports = {
             // They are intersected.
             '@babel/preset-env',
             {
-                targets: {
-                    node: 'current',
-                    // https://browsersl.ist/#q=last+2+versions
-                    // Audience coverage: 90.7%
-                    browsers: ['last 4 versions']
-                },
                 corejs: '3.7',
-                useBuiltIns: 'entry',
+                useBuiltIns: 'usage',
                 // jest runs in node, hence uses commonjs module style
                 // otherwise we want our import/export module style
                 // hence tree-shaking
@@ -25,6 +19,5 @@ module.exports = {
         ],
         '@babel/preset-typescript'
     ],
-    plugins: [],
     sourceMaps: !isProd
 }
