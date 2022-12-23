@@ -10,6 +10,7 @@ module.exports = {
         '@utils': '<rootDir>/src/utils.ts',
         '^@dom/(.*)$': '<rootDir>/src/dom/$1',
         '@dom': '<rootDir>/src/dom/index',
+        '@errors': '<rootDir>/src/errors/index',
         '@constants': '<rootDir>/src/constants.ts',
         '^types/(.*)$': '<rootDir>/src/types/$1',
         '^types$': '<rootDir>/src/types/create.ts'
