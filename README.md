@@ -43,7 +43,6 @@ GeneratorJs supports all major module systems giving you the full flexibility.
         <li><a href="#events">Events</a></li>
       </ul>
     </li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li></ol>
 </details>
@@ -52,7 +51,7 @@ GeneratorJs supports all major module systems giving you the full flexibility.
 #### Installing via npm
 
 ```bash
-$ npm install generatorjs
+$ npm install @o.yilmaz/generatorjs
 ```
 
 #### Using as script
@@ -278,5 +277,14 @@ generator
 ```  
 
 ### Contact  
+
+You can mail me on `oguz.yilmaz@yahoo.com`.
+
+## License
+
+Distributed under the MIT License. See `LICENSE.md` for more information.
+
+<!-- CONTACT -->
+## Contact
 
 You can mail me on `oguz.yilmaz@yahoo.com`.
