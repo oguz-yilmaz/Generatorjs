@@ -1,3 +1,5 @@
+import type { GeneratorJs } from '@generatorjs'
+
 export interface AttributesDefinitions {
     [key: string]: string
 }
@@ -5,7 +7,7 @@ export interface AttributesDefinitions {
 export interface GeneratorDefinitions {
     el: keyof HTMLElementTagNameMap
     attrs?: AttributesDefinitions
-    inner?: DocumentFragment | Node | HTMLElement | string
+    inner?: DocumentFragment | Node | HTMLElement | string | GeneratorJs
     child?: string | GeneratorDefinitions | GeneratorDefinitions[]
 }
 

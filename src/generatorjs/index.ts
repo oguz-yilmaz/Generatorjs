@@ -1,16 +1,18 @@
 import { isPlainObject } from '@utils'
-import type { GeneratorDefinitions } from 'types'
+import type { GeneratorDefinitions, RegisteredEvents } from 'types'
 import { create, getText } from '@dom'
 
 import addEvent from './addEvent'
 import append from './append'
 import attachTo from './attachTo'
-import deleteEvent from './deleteEvent'
+import removeEvent from './removeEvent'
 import reset from './reset'
 import setContent from './setContent'
 import { select, selectAll } from './selects'
 
 export class GeneratorJs {
+    registeredEvents: RegisteredEvents = {}
+
     // Node > HTMLElement
     $selected: Node | NodeList | null = null
     $fragment: DocumentFragment | null = null
@@ -23,7 +25,7 @@ export class GeneratorJs {
     attachTo = attachTo
     selectAll = selectAll
     setContent = setContent
-    deleteEvent = deleteEvent
+    removeEvent = removeEvent
 
     constructor(definitions: GeneratorDefinitions) {
         // todo verify definitions

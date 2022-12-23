@@ -1,6 +1,8 @@
 import { AbstractTask } from '@o.yilmaz/taskchain'
 import type { ProcessorParameters } from 'types/attributes'
-import { setHtml } from '@utils'
+import { isString, setHtml } from '@utils'
+import { GeneratorJs } from '@generatorjs'
+import { appendTo } from '@dom/utils'
 
 export class InnerProcessor extends AbstractTask {
     shouldRun({ definitions }: ProcessorParameters) {
@@ -10,6 +12,18 @@ export class InnerProcessor extends AbstractTask {
     run({ elem, definitions }: ProcessorParameters) {
         const { inner } = definitions
 
-        return setHtml(elem, inner)
+        if (inner instanceof GeneratorJs && inner.$el) {
+            appendTo(elem, inner.$el)
+
+            return elem
+        }
+
+        if (isString(inner)) {
+            return setHtml(elem, inner)
+        }
+
+        appendTo(elem, inner)
+
+        return elem
     }
 }

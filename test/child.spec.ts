@@ -1,5 +1,4 @@
 import Generator from '@generator'
-import { GeneratorJs } from '@generatorjs'
 
 test('Child props sets inner text if it is a string', () => {
     const gen = Generator({
