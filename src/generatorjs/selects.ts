@@ -19,7 +19,11 @@ const assertSelector = (
 export function select(this: GeneratorJs, selector: string): GeneratorJs {
     assertSelector(this.$fragment, selector)
 
-    this.$selected = this.$fragment!.querySelector(selector)
+    const selected = this.$fragment!.querySelector(selector)
+
+    if (selected) {
+        this.$selected = selected
+    }
 
     return this
 }
@@ -27,7 +31,11 @@ export function select(this: GeneratorJs, selector: string): GeneratorJs {
 export function selectAll(this: GeneratorJs, selector: string): GeneratorJs {
     assertSelector(this.$fragment, selector)
 
-    this.$selected = this.$fragment!.querySelectorAll(selector)
+    const selected = this.$fragment!.querySelectorAll(selector)
+
+    if (selected.length) {
+        this.$selected = selected
+    }
 
     return this
 }

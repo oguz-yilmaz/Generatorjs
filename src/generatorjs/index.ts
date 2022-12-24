@@ -1,10 +1,12 @@
 import { isPlainObject } from '@utils'
 import type { GeneratorDefinitions, RegisteredEvents } from 'types'
 import { create, getText } from '@dom'
-
+import { Config } from 'types'
 import addEvent from './addEvent'
 import append from './append'
 import attachTo from './attachTo'
+import remove from './remove'
+import replace from './replace'
 import removeEvent from './removeEvent'
 import reset from './reset'
 import setContent from './setContent'
@@ -12,6 +14,9 @@ import { select, selectAll } from './selects'
 
 export class GeneratorJs {
     registeredEvents: RegisteredEvents = {}
+    config: Config = {
+        dev: false
+    }
 
     // Node > HTMLElement
     $selected: Node | NodeList | null = null
@@ -20,6 +25,8 @@ export class GeneratorJs {
     reset = reset
     select = select
     append = append
+    remove = remove
+    replace = replace
     getText = getText
     addEvent = addEvent
     attachTo = attachTo
@@ -27,12 +34,19 @@ export class GeneratorJs {
     setContent = setContent
     removeEvent = removeEvent
 
-    constructor(definitions: GeneratorDefinitions) {
+    constructor(
+        definitions: GeneratorDefinitions,
+        userConfig: Config | null = null
+    ) {
         // todo verify definitions
         if (!definitions || !isPlainObject(definitions)) {
             throw new TypeError(
                 `Element passed to constructor must be an object! ${typeof definitions} is given!`
             )
+        }
+
+        if (userConfig) {
+            this.parseConfig(userConfig)
         }
 
         this.$fragment = create(definitions)
@@ -48,6 +62,10 @@ export class GeneratorJs {
         }
 
         return null
+    }
+
+    parseConfig(userConfig: Config) {
+        this.config = { ...this.config, ...userConfig }
     }
 
     getSelected() {

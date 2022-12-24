@@ -39,6 +39,7 @@ beforeEach(() => {
 test('Selects a single element', () => {
     const selected = gen.select('#test-id').getSelected()
 
+    // @ts-ignore
     expect(selected).toHaveAttribute('name', 'test-name')
 })
 

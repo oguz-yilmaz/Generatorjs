@@ -14,3 +14,15 @@ export const appendTo = (element, nodeToAppend) => {
 export function isNode(elem): elem is Node {
     return !!elem.nodeType
 }
+
+export const removeNodes = (node: Node | NodeList) => {
+    if (node instanceof Node) {
+        node.parentNode?.removeChild(node)
+    }
+
+    if (node instanceof NodeList && node.length) {
+        node.forEach((currentNode) =>
+            currentNode.parentNode?.removeChild(currentNode)
+        )
+    }
+}

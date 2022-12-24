@@ -14,13 +14,13 @@ export const create = (
 
     const elem = createElement(definitions.el)
 
-    const chain = new TaskChain({
+    const processors = new TaskChain({
         definitions,
         create,
         elem
     })
 
-    chain
+    processors
         .registerTask(new InnerProcessor())
         .registerTask(new AttributeProcessor())
         .registerTask(new ChildProcessor())

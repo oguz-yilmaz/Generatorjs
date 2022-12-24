@@ -8,6 +8,8 @@ export default function attachTo(this: GeneratorJs, element) {
         )
     }
 
+    // todo this.$selected ?? this.$fragment or just this.$fragment be better ?
     appendTo(element, this.$selected ?? this.$fragment)
+
     return this
 }

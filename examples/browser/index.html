@@ -8,7 +8,7 @@
 <script src="../../dist/Generator.min.js"></script>
 
 <script>
-    const gen = GeneratorJs({
+    const gen1 = GeneratorJs({
         el: 'div',
         attrs: {
             class: 'container md-5'
@@ -29,7 +29,10 @@
                 inner: 'Div with single child element',
                 child: {
                     el: 'button',
-                    inner: 'Click me'
+                    inner: 'Click me',
+                    events: {
+                        click: (e) => alert('Clicked')
+                    }
                 }
             }
         ]
@@ -37,7 +40,7 @@
 
     const gen2 = GeneratorJs({
         el: 'div',
-        inner: document.createElement('span')
+        inner: gen1
     })
 
     gen2.attachTo(document.body)

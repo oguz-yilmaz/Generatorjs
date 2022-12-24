@@ -14,6 +14,7 @@ test('appends ul to a single div', () => {
 
     gen.append(ul)
 
+    // @ts-ignore
     expect(gen.getFragment()!.lastElementChild).toContainElement(ul)
     expect(gen.getText()).toBe('Test divThis is a test ul')
 })
@@ -36,6 +37,7 @@ test('appends span to a selected nested div', () => {
 
     gen.select('.innerDiv').append(span)
 
+    // @ts-ignore
     expect(gen.getSelected()).toContainElement(span)
     expect(gen.getText()).toBe('Inner div textThis span element')
 })
