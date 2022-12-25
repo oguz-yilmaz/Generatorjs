@@ -4,7 +4,7 @@ import { appendTo, removeNodes } from '@dom/utils'
 
 export default function replace(
     this: GeneratorJs,
-    node: Node | NodeList | GeneratorJs | string | undefined
+    node: Node | NodeList | GeneratorJs | string | undefined | (Node | string)[]
 ): GeneratorJs {
     if (!node) {
         throw new NoElementSpecifiedError()
@@ -27,9 +27,7 @@ export default function replace(
 
     // selected via document.querySelectorAll
     // replace each one of them  with the given node!!!!
-    // important: This might not be desired action sometimes
-    // better to add warnings.
-    // and reset $selected
+    // important: This might not be desired action sometimes.
     if (this.$selected instanceof NodeList) {
         if (this.config.dev) {
             // eslint-disable-next-line no-console
@@ -41,9 +39,15 @@ export default function replace(
         this.$selected.forEach((currentNode) => {
             const parent = currentNode.parentNode
 
-            parent?.removeChild(currentNode)
-
-            appendTo(parent, element)
+            if (element instanceof Node) {
+                parent?.replaceChild(element, currentNode)
+            } else if (element instanceof NodeList) {
+                parent?.replaceChildren(...Array.from(element))
+            } else if (Array.isArray(element)) {
+                // Array of nodes or strings
+                // strings will be set as text nodes
+                parent?.replaceChildren(...element)
+            }
         })
     }
 

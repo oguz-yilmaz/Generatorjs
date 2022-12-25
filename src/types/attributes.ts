@@ -5,7 +5,7 @@ export interface AttributesDefinitions {
 }
 
 export interface EventsDefinitions {
-    [key: string]: string
+    [key: string]: EventListenerOrEventListenerObject | null
 }
 
 export interface GeneratorDefinitions {
@@ -17,6 +17,7 @@ export interface GeneratorDefinitions {
 }
 
 export interface ProcessorParameters {
+    generator: GeneratorJs
     elem: HTMLElement
     definitions: GeneratorDefinitions
     create: (definitions: GeneratorDefinitions) => DocumentFragment | null

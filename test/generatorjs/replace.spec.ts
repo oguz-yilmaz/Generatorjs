@@ -93,5 +93,6 @@ test('Replaces multiple node', () => {
 
     gen.replace(elem).selectAll('span')
 
-    expect((gen.$selected as NodeList)?.length).toBe(2)
+    expect((gen.$selected as NodeList)?.length).toBe(1)
+    expect(gen.$selected).toContain(elem)
 })

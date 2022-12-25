@@ -17,6 +17,7 @@
         "no-shadow": 0,
         "no-plusplus": 0,
         "prefer-rest-params": 0,
+        "import/no-unresolved": 0,
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "import/extensions": [
             "error",

@@ -54,7 +54,7 @@ GeneratorJs supports all major module systems giving you the full flexibility.
 $ npm install @o.yilmaz/generatorjs
 ```
 
-#### Using as script
+#### Importing
 
 You can download the scripts under `dist` folder.
 
@@ -62,6 +62,14 @@ You can download the scripts under `dist` folder.
 <script src="/path/to/GeneratorJs.js"></script>
 ```
 
+or 
+```javascript
+import GeneratorJs from '@o.yilmaz/generatorjs'
+
+// or
+
+const { default: GeneratorJs } = require('@o.yilmaz/generatorjs')
+```
 ## Usage
 
 We use GeneratorJs contractor to define our virtual DOM tree. That constructor

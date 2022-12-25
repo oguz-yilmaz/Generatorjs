@@ -13,21 +13,22 @@ export class ChildProcessor extends AbstractTask {
         return true
     }
 
-    run({ elem, definitions, create }: ProcessorParameters) {
+    run({ elem, definitions, create, generator }: ProcessorParameters) {
         if (!isNode(elem)) {
             throw new Error('No parent element to append child(s).')
         }
 
         const { child } = definitions
+        const boundedCreate = create.bind(generator)
 
         if (!Array.isArray(child) && !isString(child) && child?.el) {
-            appendTo(elem, create(child))
+            appendTo(elem, boundedCreate(child))
         } else if (Array.isArray(child) && !emptyArray(child)) {
             const fragment: DocumentFragment =
                 window.document.createDocumentFragment()
 
             forEach(child, (k, childDefinition) => {
-                const childFragment = create(childDefinition)
+                const childFragment = boundedCreate(childDefinition)
 
                 appendTo(fragment, childFragment)
             })

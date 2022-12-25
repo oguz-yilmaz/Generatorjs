@@ -26,6 +26,7 @@ export class GeneratorJs {
     select = select
     append = append
     remove = remove
+    create = create
     replace = replace
     getText = getText
     addEvent = addEvent
@@ -49,7 +50,7 @@ export class GeneratorJs {
             this.parseConfig(userConfig)
         }
 
-        this.$fragment = create(definitions)
+        this.$fragment = this.create(definitions)
     }
 
     get $el(): Node | HTMLElement | null {
