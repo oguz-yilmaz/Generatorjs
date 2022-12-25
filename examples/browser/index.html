@@ -18,7 +18,8 @@
                 el: 'span',
                 attrs: {
                     class: 'test-class'
-                }
+                },
+                inner: 'Text value of this span'
             },
             {
                 el: 'span',
@@ -29,9 +30,11 @@
                 inner: 'Div with single child element',
                 child: {
                     el: 'button',
-                    inner: 'Click me',
+                    child: 'Click me',
+                    'custom-attribute': 'Custom value',
                     events: {
-                        click: (e) => alert('Clicked')
+                        click: (event) => alert('Clicked'),
+                        mouseover: (event) => alert('Hovered')
                     }
                 }
             }

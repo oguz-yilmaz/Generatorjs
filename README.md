@@ -15,6 +15,48 @@ you will.
 
 GeneratorJs supports all major module systems giving you the full flexibility.
 
+```javascript
+const gen1 = GeneratorJs({
+        el: 'div',
+        attrs: {
+            class: 'container md-5'
+        },
+        child: [
+            {
+                el: 'span',
+                attrs: {
+                    class: 'test-class'
+                },
+                inner: 'Text value of this span'
+            },
+            {
+                el: 'span',
+                child: 'A span element with this text'
+            },
+            {
+                el: 'div',
+                inner: 'Div with single child element',
+                child: {
+                    el: 'button',
+                    child: 'Click me',
+                    'custom-attribute': 'Custom value',
+                    events: {
+                        click: (event) => alert('Clicked'),
+                        mouseover: (event) => alert('Hovered')
+                    }
+                }
+            }
+        ]
+    })
+
+    const gen2 = GeneratorJs({
+        el: 'div',
+        inner: gen1
+    })
+
+    gen2.attachTo(document.body)
+```
+
 ### Features
 
 -   Create nested DOM elements efficiently
