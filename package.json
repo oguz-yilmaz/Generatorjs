@@ -1,6 +1,6 @@
 {
     "name": "@o.yilmaz/generatorjs",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Allows you to create  and manipulate DOM elements seamlessly in a declarative way.",
     "main": "out/cjs/index.js",
     "module": "out/mjs/index.js",
