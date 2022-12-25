@@ -1,2 +1,4 @@
 #!/usr/bin/env sh
+echo 'Running lint-staged'
+
 npm run check-types && npm run lint-staged && npm run build
