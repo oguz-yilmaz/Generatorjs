@@ -13,10 +13,10 @@ with performance kept in mind. This way you can programmatically create nested
 DOM elements, add event listeners and manipulate and attach back them to DOM tree if
 you will.
 
-GeneratorJs supports all major module systems giving you the full flexibility.
+GeneratorJs supports all major module systems giving you full flexibility.
 
 ```javascript
-const gen1 = GeneratorJs({
+const gen = GeneratorJs({
         el: 'div',
         attrs: {
             class: 'container md-5'
@@ -49,12 +49,7 @@ const gen1 = GeneratorJs({
         ]
     })
 
-    const gen2 = GeneratorJs({
-        el: 'div',
-        inner: gen1
-    })
-
-    gen2.attachTo(document.body)
+    gen.attachTo(document.body)
 ```
 
 ### Features
