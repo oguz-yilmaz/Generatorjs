@@ -12,6 +12,7 @@
     },
     "files": [
         "out",
+        "dist/Generator.min.js",
         "README.md",
         "LICENSE.md"
     ],
