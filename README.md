@@ -97,6 +97,10 @@ You can download the scripts under `dist` folder.
 
 ```javascript
 <script src="/path/to/GeneratorJs.js"></script>
+
+// or use CDN
+
+<script src="https://cdn.jsdelivr.net/npm/@o.yilmaz/generatorjs@1.0.6/dist/Generator.min.js"></script>
 ```
 
 or 
