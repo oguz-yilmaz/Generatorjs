@@ -319,11 +319,7 @@ generator
     .select('#another-button')
     .addEvent('click', (event) => alert('Second button clicked'))
     .attachTo(document.body)
-```  
-
-### Contact  
-
-You can mail me on `oguz.yilmaz@yahoo.com`.
+```
 
 ## License
 
