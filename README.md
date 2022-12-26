@@ -5,7 +5,7 @@
 Creating nested DOM elements dynamically is always a hustle, especially if you
 don't use one of those js frameworks like React, Vue, Angular, etc. Even they
 don't give you fully independent DOM elements but rather a wrapper around it. In fact
-they use libraries very similar GeneratorJs to handle DOM manipulations, element and
+they use libraries very similar to GeneratorJs under the hood to handle DOM manipulations, element and
 virtual DOM creations, handling events etc.  
 
 GeneratorJs is a well-tested library that allows you to create elements dynamically in a **declarative way**
