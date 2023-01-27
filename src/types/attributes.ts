@@ -1,7 +1,7 @@
 import type { GeneratorJs } from '@generatorjs'
 
 export interface AttributesDefinitions {
-    [key: string]: string
+    [key: string]: string | boolean
 }
 
 export interface EventsDefinitions {
