@@ -54,12 +54,12 @@ gen.attachTo(document.body)
 
 ### Features
 
--   Create nested DOM elements efficiently
--   Define what elements will be created by a definitions object
--   Efficient DOM manipulations
--   Select and modify elements in the virtual DOM
--   Add or remove event listeners to elements
--   Attach elements to any places in actual DOM
+- Create nested DOM elements efficiently
+- Define what elements will be created by a definitions object
+- Efficient DOM manipulations
+- Select and modify elements in the virtual DOM
+- Add or remove event listeners to elements
+- Attach elements to any places in actual DOM
 
 <details>
   <summary>Table of Contents</summary>
@@ -137,6 +137,7 @@ console.log(gen.$el) // will return the root element
 The above snippet will create an empty div element.
 
 ```html
+
 <div></div>
 ```
 
@@ -147,7 +148,7 @@ const gen = GeneratorJs({ el: 'img' })
 ```
 
 ```html
-<img />
+<img/>
 ```
 
 Sometimes we want to set some text node in elements. For that we can use either
@@ -168,6 +169,7 @@ console.log(gen.$el)
 ```
 
 ```html
+
 <div id="test-id" name="test-name">Inner text of the div element</div>
 ```
 
@@ -183,6 +185,7 @@ const gen = GeneratorJs({
     attrs: {
         id: 'test-id',
         name: 'test-name',
+        checked: '', // for boolean values just set empty string
         'custom-attribute': 'custom attribute value'
     },
     inner: 'Inner text of the div element'
@@ -192,6 +195,7 @@ console.log(gen.$el)
 ```
 
 ```html
+
 <div id="test-id" name="test-name" custom-attribute="custom attribute value">
     Inner text of the div element
 </div>
@@ -221,6 +225,7 @@ console.log(gen.$el)
 ```
 
 ```html
+
 <div id="test-id" name="test-name" custom-attribute="custom attribute value">
     <span class="child-class" data-counter="John Doe"></span>
 </div>
@@ -231,12 +236,12 @@ console.log(gen.$el)
 Child property of definitions object will determine what elements tree goes
 under a root element.
 
--   It can be defined as array or string or an object.
--   If string, then it will act as the inner text of the given element. If
-    array, each definitions inside the array will be represent a child element
-    that will be appended to that root.
--   If object, it will act as definitions object which will represent a single
-    element to be appended to that root.
+- It can be defined as array or string or an object.
+- If string, then it will act as the inner text of the given element. If
+  array, each definitions inside the array will be represent a child element
+  that will be appended to that root.
+- If object, it will act as definitions object which will represent a single
+  element to be appended to that root.
 
 ```javascript
 const gen = GeneratorJs({
@@ -270,6 +275,7 @@ console.log(gen.$el)
 ```
 
 ```html
+
 <div class="container md-5">
     <span class="test-class"></span>
     <span>A span element with this text</span>
@@ -340,7 +346,8 @@ You can select a single node via `gen.selectAll(selectorString)` method.
 `gen.getSelected()` method will return a NodeList or `null`.
 
 ```javascript
-const allDivs = generator.select('div').getSelected()
+const allDivs = generator.select('div')
+    .getSelected()
 ```
 
 #### 3. Getting selected node(s)
@@ -352,7 +359,8 @@ Note: Do not directly modify `$selected` property as it may cause unintended
 results.
 
 ```javascript
-const selected = generator.select('#btn').getSelected()
+const selected = generator.select('#btn')
+    .getSelected()
 ```
 
 #### 4. Resetting selection
@@ -368,13 +376,15 @@ removing.
 Removing a single node:
 
 ```javascript
-generator.select('#btn').remove()
+generator.select('#btn')
+    .remove()
 ```
 
 Removing node list:
 
 ```javascript
-generator.select('.btn').remove()
+generator.select('.btn')
+    .remove()
 ```
 
 ### Replacing elements
@@ -389,11 +399,11 @@ before removing.
 
 Argument `node` of replace method can be almost anything. It can be
 
--   Node
--   NodeList
--   another GeneratorJs object
--   string
--   Array of Nodes or strings
+- Node
+- NodeList
+- another GeneratorJs object
+- string
+- Array of Nodes or strings
 
 ```javascript
 const gen = GeneratorJs({
@@ -414,6 +424,7 @@ console.log(gen.$el)
 ```
 
 ```html
+
 <div>
     <span>Initial span</span>
     <span>Initial span</span>
@@ -429,10 +440,12 @@ const replacingDiv = GeneratorJs({
     child: 'Test div'
 })
 
-gen.select('span').replace(replacingDiv)
+gen.select('span')
+    .replace(replacingDiv)
 ```
 
 ```html
+
 <div>
     <div>Test div</div>
     <div>Test div</div>
